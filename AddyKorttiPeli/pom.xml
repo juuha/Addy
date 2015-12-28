@@ -41,7 +41,7 @@
                 <configuration>
                     <targetClasses>
                         <param>addykorttipeligroupid.addykorttipeli.*</param>
-                        
+                        <param>addykorttipeligroupid.logiikka.*</param>
                     </targetClasses>
                     <targetTests>
                         <param>addykorttipeligroupid.addykorttipeli.*</param>

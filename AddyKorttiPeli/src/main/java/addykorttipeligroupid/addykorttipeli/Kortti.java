@@ -13,6 +13,13 @@ public class Kortti {
     public int getArvo() {
         return arvo;
     }
+    
+    public int getNumeroArvo(){
+        while (arvo > 9){
+            arvo -=10;
+        }
+        return arvo;
+    }
 
     public String getMaa() {
         return maa;

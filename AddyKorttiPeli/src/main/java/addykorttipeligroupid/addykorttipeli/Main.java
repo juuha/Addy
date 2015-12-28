@@ -1,5 +1,6 @@
 package addykorttipeligroupid.addykorttipeli;
 
+import addykorttipeligroupid.addykorttipeli.logiikka.Vuoro;
 import java.util.Scanner;
 
 public class Main {
@@ -72,7 +73,7 @@ public class Main {
 
     private static void voitto(Poyta poyta) {
         Pelaaja apu = poyta.getTamanVuoronPelaaja();
-        System.out.println("Pelaaja: " +apu.getNimi()+ " voitti pelin!");
+        System.out.println("Pelaaja " +apu.getNimi()+ " voitti pelin!");
     }
 
 }

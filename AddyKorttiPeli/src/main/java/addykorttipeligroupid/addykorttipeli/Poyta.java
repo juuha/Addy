@@ -89,4 +89,11 @@ public class Poyta {
         return pelaajat;
     }
     
+    public void setPaallimmainen(Kortti kortti){
+        paallimmainen = kortti;
+    }
+    
+    public void laitaPoydallaOleviinKortteihin(Kortti kortti){
+        poydallaOlevatKortit.add(kortti);
+    }
 }
