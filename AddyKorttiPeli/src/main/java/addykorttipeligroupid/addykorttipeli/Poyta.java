@@ -96,4 +96,8 @@ public class Poyta {
     public void laitaPoydallaOleviinKortteihin(Kortti kortti){
         poydallaOlevatKortit.add(kortti);
     }
+    
+    public ArrayList<Kortti> getPoydallaOlevatKortit(){
+        return poydallaOlevatKortit;
+    }
 }

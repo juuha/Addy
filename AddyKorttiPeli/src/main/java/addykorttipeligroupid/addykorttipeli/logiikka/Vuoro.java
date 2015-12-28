@@ -32,7 +32,7 @@ public class Vuoro {
             System.out.println("Mitä tehdään? (pelaa/nosta/lopeta vuoro).");
             String komento = lukija.nextLine();
             if (komento.equals("nosta")) {
-                nostaKortti();//pakka voi olla tyhjä, korjaus tarpeen
+                nostaKortti();
             } else if (komento.equals("lopeta vuoro")) {
                 if (lopetavuoro()) {
                     break;
@@ -90,7 +90,7 @@ public class Vuoro {
                     if (voikoKortitPelata(pelattavatKortit)) {
                         poyta.setPaallimmainen(pelattavatKortit.get(0));
                         for (Kortti kortti : pelattavatKortit) {
-                            poyta.getTamanVuoronPelaaja().otaKorttiKadesta(kortti.getMaa(), kortti.getArvo());  //ongelma
+                            poyta.getTamanVuoronPelaaja().otaKorttiKadesta(kortti.getMaa(), kortti.getArvo());  
                             poyta.laitaPoydallaOleviinKortteihin(kortti);
                         }
                         break;
@@ -147,10 +147,13 @@ public class Vuoro {
         return false;
     }
 
-    private void nostaKortti() { //pakka voi olla tyhjä, korjaus tarpeen
+    private void nostaKortti() { 
         if (poyta.getTamanVuoronPelaaja().getTallaVuorollaNostettu() >= 3) {
             System.out.println("\nNostit jo 3 korttia tällä vuorolla.");
         } else {
+            if (poyta.getPakka().montaPakassa() < 2){
+                poyta.getPakka().sekoitaPakkaan(poyta.getPoydallaOlevatKortit());
+            }
             Kortti apuKortti = poyta.getPakka().otaEka();
             poyta.getTamanVuoronPelaaja().nostaKortti(apuKortti);
             System.out.println("");
