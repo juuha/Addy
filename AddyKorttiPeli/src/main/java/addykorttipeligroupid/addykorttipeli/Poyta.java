@@ -23,10 +23,6 @@ public class Poyta {
         this.pakka = pakka;
     }
     
-    public void pelaaPaallimaisena(Kortti kortti){
-        paallimmainen = kortti;
-    }
-    
     public Kortti getPaallimmainen(){
         return paallimmainen;
     }
@@ -69,7 +65,7 @@ public class Poyta {
         pelinEkaVuoro = false;
     }
     
-    public boolean onkoEkaVuoroOhi(){
+    public boolean onkoEkaVuoro(){
         return pelinEkaVuoro;
     }
     

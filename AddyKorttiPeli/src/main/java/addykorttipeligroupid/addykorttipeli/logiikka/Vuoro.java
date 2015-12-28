@@ -57,7 +57,7 @@ public class Vuoro {
             return;
         }
 
-        if (poyta.onkoEkaVuoroOhi() == false) {
+        if (poyta.onkoEkaVuoro() == false) {
             poyta.ekaVuoroOhi();
         }
 
@@ -67,7 +67,7 @@ public class Vuoro {
     private void valmistelut() {
         voitto = 0;
         poyta.getTamanVuoronPelaaja().nollaaKorttienNostot();
-        boolean apu = poyta.onkoEkaVuoroOhi();
+        boolean apu = poyta.onkoEkaVuoro();
         if (apu = true) {
             System.out.println(poyta.getViimeVuorollaPelattu());
         }

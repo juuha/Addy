@@ -46,14 +46,14 @@ public class Pakka {
         return pakka.size();
     }
     
-    public Poyta jaaKortit(Poyta poyta){
+    public void jaaKortit(Poyta poyta){
         for (Pelaaja pelaaja : poyta.getPelaajat()) {
             for (int i = 0; i < 7; i++) {
                 Kortti apu = otaEka();
                 pelaaja.nostaKortti(apu);
             }
         }
-        return poyta;
+        
     }
     
     public void sekoitaPakkaan(ArrayList<Kortti> poydallaOlevatKortit){
