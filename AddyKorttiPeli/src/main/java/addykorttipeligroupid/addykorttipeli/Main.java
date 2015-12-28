@@ -54,8 +54,7 @@ public class Main {
                 if (luku != 2 && luku != 3 && luku != 3) {
                     System.out.println("Virheellinen syöte. Anna luku 2/3/4");
                 } else if (luku == 2) {
-                    poyta.lisaaPelaaja(new Pelaaja("eka"));
-                    poyta.lisaaPelaaja(new Pelaaja("toka"));
+                    luoPelaajat(poyta, luku);
                     break;
                 } else if (luku == 3) {
                     poyta.lisaaPelaaja(new Pelaaja("eka"));
@@ -74,6 +73,14 @@ public class Main {
             }
         }
         return poyta;
+    }
+
+    private static void luoPelaajat(Poyta poyta, int luku) {
+        for (int i = 1; i <= luku; i++) {
+            poyta.lisaaPelaaja(new Pelaaja(""+i));
+            
+        }
+        return;
     }
 
     private static void voitto(Poyta poyta) {
