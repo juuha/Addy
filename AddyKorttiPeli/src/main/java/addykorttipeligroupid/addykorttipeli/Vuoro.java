@@ -6,7 +6,7 @@ public class Vuoro {
 
     private Poyta poyta;
     private Scanner lukija;
-    private int voitto;
+    private int voitto = 0;
 
     public Vuoro(Scanner lukija, Poyta poyta) {
         this.poyta = poyta;
@@ -28,12 +28,13 @@ public class Vuoro {
             if (komento.equals("nosta")) {
                 nostaKortti();
             } else if (komento.equals("lopeta vuoro")) {
-                if (lopetavuoro()){
+                if (lopetavuoro()) {
                     break;
                 }
             } else if (komento.equals("pelaa")) {
-                pelaa();
-                break;
+                if (pelaa()) {
+                    break;
+                }
             } else {
                 System.out.println("\nVirheellinen syöte.");
             }
@@ -47,11 +48,11 @@ public class Vuoro {
         if (poyta.getTamanVuoronPelaaja().montaKorttiaKadessa() == 0) {
             voitto = 1;
         }
-        
+
         if (poyta.onkoEkaVuoroOhi() == false) {
             poyta.ekaVuoroOhi();
         }
-        
+
         poyta.setTamanVuoronPelaaja();
     }
 
@@ -62,16 +63,26 @@ public class Vuoro {
         if (apu = true) {
             System.out.println(poyta.getViimeVuorollaPelattu());
         }
-        System.out.println("Paina palautusnäppäintä (enteriä) aloittaaksesi pelaaja "+ 
-                poyta.getTamanVuoronPelaaja().getNimi() + ":n vuoro.");
-        String mikatahanasa = lukija.nextLine();
-        
-        
+        System.out.println("Paina palautusnäppäintä (enteriä) aloittaaksesi pelaaja "
+                + poyta.getTamanVuoronPelaaja().getNimi() + ":n vuoro.");
+        lukija.nextLine();
+
     }
 
-    private void pelaa() {
-        // ei valmis
-        return;
+    private boolean pelaa() {
+        while (true) {
+            System.out.println("Mitä tehdään? (valitse kortteja/palaa)");
+            String komento = lukija.nextLine();
+            if (komento.equals("palaa")) {
+                return false;
+            } else if (komento.equals("valitse kortteja")) {
+                //ei valmis
+                return true;
+            } else {
+                System.out.println("Virheellinen syöte.");
+            }
+        }
+
     }
 
     private void nostaKortti() {
@@ -86,12 +97,11 @@ public class Vuoro {
 
     private boolean lopetavuoro() {
         if (poyta.getTamanVuoronPelaaja().getTallaVuorollaNostettu() == 3) {
-                    // ei valmis
-                    return true;
-                } else {
-                    System.out.println("\nEt ole nostanut kolmea kertaa tällä vuorolla.");
-                    return false;
-                }
+            return true;
+        } else {
+            System.out.println("\nEt ole nostanut kolmea kertaa tällä vuorolla.");
+            return false;
+        }
     }
 
 }

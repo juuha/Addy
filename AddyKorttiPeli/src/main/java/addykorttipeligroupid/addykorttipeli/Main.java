@@ -51,21 +51,10 @@ public class Main {
             String apu = lukija.nextLine();
             try {
                 int luku = Integer.parseInt(apu);
-                if (luku != 2 && luku != 3 && luku != 3) {
+                if (luku != 2 && luku != 3 && luku != 4) {
                     System.out.println("Virheellinen syöte. Anna luku 2/3/4");
-                } else if (luku == 2) {
-                    luoPelaajat(poyta, luku);
-                    break;
-                } else if (luku == 3) {
-                    poyta.lisaaPelaaja(new Pelaaja("eka"));
-                    poyta.lisaaPelaaja(new Pelaaja("toka"));
-                    poyta.lisaaPelaaja(new Pelaaja("kolmas"));
-                    break;
                 } else {
-                    poyta.lisaaPelaaja(new Pelaaja("eka"));
-                    poyta.lisaaPelaaja(new Pelaaja("toka"));
-                    poyta.lisaaPelaaja(new Pelaaja("kolmas"));
-                    poyta.lisaaPelaaja(new Pelaaja("neljäs"));
+                    luoPelaajat(poyta, luku);
                     break;
                 }
             } catch (Exception e) {
@@ -78,14 +67,11 @@ public class Main {
     private static void luoPelaajat(Poyta poyta, int luku) {
         for (int i = 1; i <= luku; i++) {
             poyta.lisaaPelaaja(new Pelaaja(""+i));
-            
         }
-        return;
     }
 
     private static void voitto(Poyta poyta) {
         Pelaaja apu = poyta.getTamanVuoronPelaaja();
-                
         System.out.println("Pelaaja: " +apu.getNimi()+ " voitti pelin!");
     }
 
