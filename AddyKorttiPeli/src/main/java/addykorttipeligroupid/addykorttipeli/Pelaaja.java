@@ -43,10 +43,11 @@ public class Pelaaja {
         Kortti apu = null;
         for (Kortti kortti : kasi) {
             if (kortti.getArvo() == arvo && kortti.getMaa().equals(maa)) {
+                apu = kortti;
                 break;
             }
         }
-        if (apu == null){
+        if (apu != null){
             kasi.remove(apu);
         }
     }

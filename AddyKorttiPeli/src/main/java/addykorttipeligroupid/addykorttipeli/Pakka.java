@@ -27,11 +27,9 @@ public class Pakka {
     }
 
     private void luoKorttienArvot(String maa) {
-        
         for (int i = 1; i <= 13; i++) {
             pakka.add(new Kortti(maa, i));
         }
-        
     }
     
     public void sekoita(){
@@ -56,5 +54,12 @@ public class Pakka {
             }
         }
         return poyta;
+    }
+    
+    public void sekoitaPakkaan(ArrayList<Kortti> poydallaOlevatKortit){
+        for (Kortti kortti : poydallaOlevatKortit) {
+            pakka.add(kortti);
+        }
+        sekoita();
     }
 }
