@@ -5,3 +5,7 @@
 ###21.12.2015
 
 5 tuntia. Ohjelman pohjatyö ja muutama JUNIT testi
+
+###28.12.2015
+
+4 tuntia. Ohjelman logiikan toiminnallisuuden valmisteleminen.
