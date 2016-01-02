@@ -9,3 +9,8 @@
 ###28.12.2015
 
 4 tuntia. Ohjelman logiikan toiminnallisuuden valmisteleminen.
+
+
+###2.1.2016
+
+4 tuntia. Graafisen käyttöliittymän kanssa tappelu.
