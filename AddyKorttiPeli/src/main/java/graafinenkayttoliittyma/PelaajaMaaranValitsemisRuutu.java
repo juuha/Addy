@@ -127,7 +127,7 @@ public class PelaajaMaaranValitsemisRuutu extends javax.swing.JFrame {
     private void jOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jOkActionPerformed
         int monta = Integer.parseInt(jPelaajaMaara.getSelectedValue());
         this.setVisible(false);
-        MuuLogiikka.montaPelaajaaGUI(monta);
+        MuuLogiikka.luoPelaajatGUI(monta);
     }//GEN-LAST:event_jOkActionPerformed
 
     /**
@@ -162,7 +162,9 @@ public class PelaajaMaaranValitsemisRuutu extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
 
-                new PelaajaMaaranValitsemisRuutu().setVisible(true);
+                PelaajaMaaranValitsemisRuutu pmlr = new PelaajaMaaranValitsemisRuutu();
+                pmlr.setLocationRelativeTo(null);
+                pmlr.setVisible(true);
             }
         });
     }

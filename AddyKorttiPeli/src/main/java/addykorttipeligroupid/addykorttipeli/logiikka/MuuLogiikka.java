@@ -13,8 +13,9 @@ import java.util.Scanner;
  */
 public class MuuLogiikka {
 
-    private static Poyta poyta;
-    private static Scanner lukija;
+    private static Poyta poyta = new Poyta(new Pakka());
+    private static Scanner lukija = new Scanner(System.in);
+    private static int odota = 0;
 
     /**
      *
@@ -67,17 +68,10 @@ public class MuuLogiikka {
         voitto();
     }
     
-    private static void pelaaGUI() {
+    public static void pelaaGUI() {
         Vuoro vuoro = new Vuoro(lukija, poyta);
         vuoro.aloitaPeli();
-        
-        while (true) {
-            int lopeta = vuoro.vuoroGUI();
-            if (lopeta == 1) {
-                break;
-            }
-        }
-        voitto();
+        vuoro.vuoroGUI();
     }
 
     
@@ -103,9 +97,7 @@ public class MuuLogiikka {
      *
      * @param luku
      */
-    public static void montaPelaajaaGUI(int luku){
-        luoPelaajatGUI(luku);
-    }
+    
 
     private static void luoPelaajat(int luku) {
         for (int i = 1; i <= luku; i++) {
@@ -118,11 +110,11 @@ public class MuuLogiikka {
      *
      * @param luku
      */
-    public static void luoPelaajatGUI(int luku){
+    public static void luoPelaajatGUI(int luku) {
+        odota = luku;
         for (int i = 0; i < luku; i++) {
-            new NimenValinta().setVisible(true);
+            NimenValinta.main(null);
         }
-        pelaaGUI();
     }
 
     private static void voitto() {
@@ -144,5 +136,22 @@ public class MuuLogiikka {
     public static void luoPelaajaNimelta(String nimi){
         poyta.lisaaPelaaja(new Pelaaja(nimi));
     }
-
+    
+    
+    
+    public static Poyta getPoyta(){
+        return poyta;
+    }
+    
+    public static Scanner getLukija(){
+        return lukija;
+    }
+    
+    public static int getOdota(){
+        return odota;
+    }
+    
+    public static void odota(){
+        odota--;
+    }
 }

@@ -3,6 +3,7 @@ package addykorttipeligroupid.addykorttipeli.logiikka;
 import addykorttipeligroupid.addykorttipeli.Kortti;
 import addykorttipeligroupid.addykorttipeli.Pelaaja;
 import addykorttipeligroupid.addykorttipeli.Poyta;
+import graafinenkayttoliittyma.AloitaVuoroRuutu;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Scanner;
@@ -77,10 +78,10 @@ public class Vuoro {
      *
      * @return
      */
-    public int vuoroGUI() {
+    public void vuoroGUI() {
         valmistelutGUI();
         
-        return voitto;
+        
     }
 
     private void jalkivalmistelut() {
@@ -109,7 +110,9 @@ public class Vuoro {
     }
     
     private void valmistelutGUI() {
-        
+        voitto = 0;
+        poyta.getTamanVuoronPelaaja().nollaaKorttienNostot();
+        AloitaVuoroRuutu.main(null);
     }
 
     private boolean pelaa() {
@@ -216,6 +219,10 @@ public class Vuoro {
             System.out.println("Pelaaja " + pelaaja.getNimi() + ": "
                     + pelaaja.montaKorttiaKadessa() + " korttia kädessä.");
         }
+    }
+    
+    public Poyta getPoyta(){
+        return poyta;
     }
 
     

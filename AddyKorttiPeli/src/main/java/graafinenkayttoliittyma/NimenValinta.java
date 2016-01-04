@@ -5,6 +5,9 @@
  */
 package graafinenkayttoliittyma;
 
+import addykorttipeligroupid.addykorttipeli.Pelaaja;
+import addykorttipeligroupid.addykorttipeli.logiikka.MuuLogiikka;
+
 /**
  *
  * @author ritakosk
@@ -89,7 +92,12 @@ public class NimenValinta extends javax.swing.JFrame {
     private void jOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jOkActionPerformed
         if (jNimi.getText() != null){
             String nimi = jNimi.getText();
+            MuuLogiikka.getPoyta().lisaaPelaaja(new Pelaaja(nimi));
+            MuuLogiikka.odota();
             this.setVisible(false);
+            if (MuuLogiikka.getOdota() == 0){
+                MuuLogiikka.pelaaGUI();
+            }
         }
     }//GEN-LAST:event_jOkActionPerformed
 
@@ -123,10 +131,14 @@ public class NimenValinta extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new NimenValinta().setVisible(true);
+                NimenValinta nl = new NimenValinta();
+                nl.setLocationRelativeTo(null);
+                nl.setVisible(true);
             }
         });
     }
+    
+     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;

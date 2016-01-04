@@ -122,11 +122,8 @@ public class AloitusRuutu extends javax.swing.JFrame {
     }//GEN-LAST:event_jLopetaActionPerformed
 
     private void jPelaaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPelaaActionPerformed
-        Scanner lukija = new Scanner(System.in);
-        Poyta poyta = new Poyta(new Pakka());
-//        MuuLogiikka.pelaa(lukija, poyta);
         this.setVisible(false);
-        new PelaajaMaaranValitsemisRuutu().setVisible(true);
+        PelaajaMaaranValitsemisRuutu.main(null);
     }//GEN-LAST:event_jPelaaActionPerformed
 
     /**
@@ -160,7 +157,9 @@ public class AloitusRuutu extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new AloitusRuutu().setVisible(true);
+                AloitusRuutu ar = new AloitusRuutu();
+                ar.setLocationRelativeTo(null);
+                ar.setVisible(true);
             }
         });
     }
