@@ -5,6 +5,7 @@
  */
 package graafinenkayttoliittyma;
 
+import addykorttipeligroupid.addykorttipeli.logiikka.MuuLogiikka;
 import java.awt.Component;
 
 /**
@@ -13,11 +14,23 @@ import java.awt.Component;
  */
 public class VuoroRuutu extends javax.swing.JFrame {
 
+    private boolean voikoLopettaa = false;
+
     /**
      * Creates new form VuoroRuutu
      */
     public VuoroRuutu() {
         initComponents();
+    }
+
+    private void joKolmeNostettu() {
+        jNostitJoKolme.setVisible(true);
+        voikoLopettaa = true;
+        jEtOleNostanut3.setVisible(false);
+    }
+
+    private void etOleNostanutKolmea() {
+        jEtOleNostanut3.setVisible(true);
     }
 
     /**
@@ -37,8 +50,10 @@ public class VuoroRuutu extends javax.swing.JFrame {
         jLopetaVuoro = new javax.swing.JButton();
         jLuovuta = new javax.swing.JButton();
         filler1 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 38), new java.awt.Dimension(0, 38), new java.awt.Dimension(32767, 38));
-        jLuovutaOK = new javax.swing.JButton();
         jLuovutaPeruuta = new javax.swing.JButton();
+        jLuovutaOK = new javax.swing.JButton();
+        jNostitJoKolme = new javax.swing.JLabel();
+        jEtOleNostanut3 = new javax.swing.JLabel();
 
         jToggleButton1.setText("jToggleButton1");
 
@@ -51,8 +66,18 @@ public class VuoroRuutu extends javax.swing.JFrame {
         jPelaa.setText("Pelaa");
 
         jNostaKortti.setText("Nosta Kortti");
+        jNostaKortti.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jNostaKorttiActionPerformed(evt);
+            }
+        });
 
         jLopetaVuoro.setText("Lopeta Vuoro");
+        jLopetaVuoro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jLopetaVuoroActionPerformed(evt);
+            }
+        });
 
         jLuovuta.setText("Luovuta?");
         jLuovuta.setInheritsPopupMenu(true);
@@ -61,6 +86,17 @@ public class VuoroRuutu extends javax.swing.JFrame {
                 jLuovutaActionPerformed(evt);
             }
         });
+
+        jLuovutaPeruuta.setText("Peruuta");
+        jLuovutaPeruuta.setVisible(false);
+        jLuovutaPeruuta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jLuovutaPeruutaActionPerformed(evt);
+            }
+        });
+
+        jLuovutaOK.setText("Luovuta");
+        jLuovutaOK.setVisible(false);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -75,8 +111,15 @@ public class VuoroRuutu extends javax.swing.JFrame {
                 .addComponent(jLopetaVuoro, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(filler1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
-                .addComponent(jLuovuta)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLuovutaPeruuta)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 121, Short.MAX_VALUE)
+                        .addComponent(jLuovuta))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLuovutaOK)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -84,20 +127,28 @@ public class VuoroRuutu extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLopetaVuoro, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPelaa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jNostaKortti, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(filler1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLuovuta))
-                        .addGap(0, 14, Short.MAX_VALUE)))
-                .addContainerGap())
+                            .addComponent(jLopetaVuoro, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jPelaa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jNostaKortti, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addContainerGap())
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(filler1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLuovuta)
+                            .addComponent(jLuovutaPeruuta))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLuovutaOK))))
         );
 
-        jLuovutaOK.setText("OK");
+        jNostitJoKolme.setText("Nostit jo 3 korttia tällä vuorolla, et voi nostaa lisää kortteja.");
+        jNostitJoKolme.setVisible(false);
 
-        jLuovutaPeruuta.setText("Peruuta");
+        jEtOleNostanut3.setText("Et ole vielä nostanut kolmea korttia tällä vuorolla.");
+        jEtOleNostanut3.setVisible(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -105,22 +156,22 @@ public class VuoroRuutu extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jNostitJoKolme)
+                            .addComponent(jEtOleNostanut3))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLuovutaOK)
-                    .addComponent(jLuovutaPeruuta))
-                .addGap(28, 28, 28))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(228, Short.MAX_VALUE)
-                .addComponent(jLuovutaOK)
+                .addContainerGap(252, Short.MAX_VALUE)
+                .addComponent(jEtOleNostanut3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLuovutaPeruuta)
+                .addComponent(jNostitJoKolme)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -130,8 +181,31 @@ public class VuoroRuutu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jLuovutaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jLuovutaActionPerformed
-        
+        jLuovuta.setVisible(false);
+        jLuovutaOK.setVisible(true);
+        jLuovutaPeruuta.setVisible(true);
+
     }//GEN-LAST:event_jLuovutaActionPerformed
+
+    private void jLuovutaPeruutaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jLuovutaPeruutaActionPerformed
+        jLuovuta.setVisible(true);
+        jLuovutaOK.setVisible(false);
+        jLuovutaPeruuta.setVisible(false);
+    }//GEN-LAST:event_jLuovutaPeruutaActionPerformed
+
+    private void jNostaKorttiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jNostaKorttiActionPerformed
+        if (MuuLogiikka.getVuoro().nostaKorttiGUI()) {
+            joKolmeNostettu();
+        }
+    }//GEN-LAST:event_jNostaKorttiActionPerformed
+
+    private void jLopetaVuoroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jLopetaVuoroActionPerformed
+        if (voikoLopettaa) {
+            //lopeta vuoro
+        } else {
+            etOleNostanutKolmea();
+        }
+    }//GEN-LAST:event_jLopetaVuoroActionPerformed
 
     /**
      * @param args the command line arguments
@@ -166,23 +240,21 @@ public class VuoroRuutu extends javax.swing.JFrame {
                 VuoroRuutu vr = new VuoroRuutu();
                 vr.setLocationRelativeTo(null);
                 vr.setVisible(true);
-                
-                
+
             }
         });
     }
-    
-    public void setOKInvisible(){
-        
-    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.Box.Filler filler1;
+    private javax.swing.JLabel jEtOleNostanut3;
     private javax.swing.JButton jLopetaVuoro;
     private javax.swing.JButton jLuovuta;
     private javax.swing.JButton jLuovutaOK;
     private javax.swing.JButton jLuovutaPeruuta;
     private javax.swing.JButton jNostaKortti;
+    private javax.swing.JLabel jNostitJoKolme;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JButton jPelaa;
     private javax.swing.JToggleButton jToggleButton1;

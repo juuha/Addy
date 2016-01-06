@@ -16,6 +16,7 @@ public class MuuLogiikka {
     private static Poyta poyta = new Poyta(new Pakka());
     private static Scanner lukija = new Scanner(System.in);
     private static int odota = 0;
+    private static Vuoro vuoro;
 
     /**
      *
@@ -69,7 +70,7 @@ public class MuuLogiikka {
     }
     
     public static void pelaaGUI() {
-        Vuoro vuoro = new Vuoro(lukija, poyta);
+        vuoro = new Vuoro(lukija, poyta);
         vuoro.aloitaPeli();
         vuoro.vuoroGUI();
     }
@@ -153,5 +154,13 @@ public class MuuLogiikka {
     
     public static void odota(){
         odota--;
+    }
+    
+    public static Vuoro getVuoro(){
+        return vuoro;
+    }
+    
+    public static void setVuoro(Vuoro v){
+        vuoro = v;
     }
 }

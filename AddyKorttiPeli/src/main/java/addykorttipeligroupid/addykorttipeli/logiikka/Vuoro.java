@@ -191,6 +191,19 @@ public class Vuoro {
             System.out.println("");
         }
     }
+    
+    public boolean nostaKorttiGUI(){
+        if (poyta.getTamanVuoronPelaaja().getTallaVuorollaNostettu() >= 3) {
+            return true;
+        } else {
+            if (poyta.getPakka().montaPakassa() < 2) {
+                poyta.getPakka().sekoitaPakkaan(poyta.getPoydallaOlevatKortit());
+            }
+            Kortti apuKortti = poyta.getPakka().otaEka();
+            poyta.getTamanVuoronPelaaja().nostaKortti(apuKortti);
+        }
+        return false;
+    }
 
     private boolean lopetavuoro() {
         if (poyta.getTamanVuoronPelaaja().getTallaVuorollaNostettu() == 3) {
