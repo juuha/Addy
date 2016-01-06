@@ -103,5 +103,9 @@ public class Pelaaja {
     public void nollaaKorttienNostot(){
         tallaVuorollaNostettu = 0;
     }
+    
+    public ArrayList<Kortti> getKadessaOlevatKortit(){
+        return kasi;
+    }
 
 }

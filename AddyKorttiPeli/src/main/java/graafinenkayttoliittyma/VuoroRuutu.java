@@ -5,8 +5,12 @@
  */
 package graafinenkayttoliittyma;
 
+import addykorttipeligroupid.addykorttipeli.Kortti;
 import addykorttipeligroupid.addykorttipeli.logiikka.MuuLogiikka;
 import java.awt.Component;
+import java.util.ArrayList;
+import javax.swing.DefaultListModel;
+import javax.swing.JList;
 
 /**
  *
@@ -14,7 +18,7 @@ import java.awt.Component;
  */
 public class VuoroRuutu extends javax.swing.JFrame {
 
-    private boolean voikoLopettaa = false;
+    private int voikoLopettaa = 3;
     private static VuoroRuutu vr;
 
     /**
@@ -22,16 +26,34 @@ public class VuoroRuutu extends javax.swing.JFrame {
      */
     public VuoroRuutu() {
         initComponents();
+        voikoLopettaa = 3;
     }
 
     private void joKolmeNostettu() {
         jNostitJoKolme.setVisible(true);
-        voikoLopettaa = true;
         jEtOleNostanut3.setVisible(false);
     }
 
     private void etOleNostanutKolmea() {
         jEtOleNostanut3.setVisible(true);
+    }
+
+    private void naytaOmatKortit() {
+        ArrayList<Kortti> kortit = MuuLogiikka.getVuoro().getPoyta().getTamanVuoronPelaaja().getKadessaOlevatKortit();
+        DefaultListModel listModel = new DefaultListModel();
+        for (Kortti k : kortit) {
+            listModel.addElement(k.toString());
+        }
+        jOmatKortit = new JList(listModel);
+        jOmatKortit.setFixedCellHeight(30);
+        jOmatKortit.setFixedCellWidth(80);
+        jOmatKortit.setLayoutOrientation(javax.swing.JList.HORIZONTAL_WRAP);
+        jOmatKortit.setVisibleRowCount(3);
+        jScrollPane1.setViewportView(jOmatKortit);
+    }
+    
+    public  void pakkaJaPoytaLoppu() {
+        jKortitLoppuPoydastaJaPakasta.setVisible(true);
     }
 
     /**
@@ -55,6 +77,16 @@ public class VuoroRuutu extends javax.swing.JFrame {
         jLuovutaOK = new javax.swing.JButton();
         jNostitJoKolme = new javax.swing.JLabel();
         jEtOleNostanut3 = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jVastustaja2 = new javax.swing.JLabel();
+        jVastustaja3 = new javax.swing.JLabel();
+        jPanel3 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jOmatKortit = new javax.swing.JList<>();
+        jPanel4 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        jKortitLoppuPoydastaJaPakasta = new javax.swing.JLabel();
 
         jToggleButton1.setText("jToggleButton1");
 
@@ -154,6 +186,88 @@ public class VuoroRuutu extends javax.swing.JFrame {
         jEtOleNostanut3.setText("Et ole vielä nostanut kolmea korttia tällä vuorolla.");
         jEtOleNostanut3.setVisible(false);
 
+        jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        jLabel1.setText("vastustaja1");
+
+        jVastustaja2.setText("vastustaja2");
+
+        jVastustaja3.setText("vastustaja3");
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addGap(78, 78, 78)
+                .addComponent(jVastustaja2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 78, Short.MAX_VALUE)
+                .addComponent(jVastustaja3)
+                .addContainerGap())
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
+                    .addComponent(jVastustaja2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jVastustaja3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Omat Kortit"));
+
+        jOmatKortit.setFixedCellHeight(30);
+        jOmatKortit.setFixedCellWidth(80);
+        jOmatKortit.setLayoutOrientation(javax.swing.JList.HORIZONTAL_WRAP);
+        jOmatKortit.setVisibleRowCount(3);
+        naytaOmatKortit();
+        jScrollPane1.setViewportView(jOmatKortit);
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1)
+                .addContainerGap())
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        jPanel4.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        jLabel2.setText("Viimevuorolla pelattu:");
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(139, 139, 139)
+                .addComponent(jLabel2)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        jKortitLoppuPoydastaJaPakasta.setText("Pakka ja pelatut kortit ovat loppu, pelaa kortteja, lopeta vuoro tai luovuta.");
+        jKortitLoppuPoydastaJaPakasta.setVisible(false);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -162,17 +276,29 @@ public class VuoroRuutu extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jNostitJoKolme)
-                            .addComponent(jEtOleNostanut3))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                            .addComponent(jEtOleNostanut3)
+                            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jKortitLoppuPoydastaJaPakasta))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(252, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jKortitLoppuPoydastaJaPakasta)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jEtOleNostanut3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jNostitJoKolme)
@@ -198,14 +324,23 @@ public class VuoroRuutu extends javax.swing.JFrame {
     }//GEN-LAST:event_jLuovutaPeruutaActionPerformed
 
     private void jNostaKorttiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jNostaKorttiActionPerformed
-        if (MuuLogiikka.getVuoro().nostaKorttiGUI()) {
-            joKolmeNostettu();
-            jEtOleNostanut3.setVisible(false);
+        if (MuuLogiikka.getVuoro().getPoyta().getPakka().montaPakassa() < 1
+            && MuuLogiikka.getVuoro().getPoyta().getPoydallaOlevatKortit().size() < 1) {
+            pakkaJaPoytaLoppu();
+        } else {
+            if (MuuLogiikka.getVuoro().nostaKorttiGUI()) {
+                joKolmeNostettu();
+                jEtOleNostanut3.setVisible(false);
+            }
+            naytaOmatKortit();
+            if (voikoLopettaa > 0) {
+                voikoLopettaa--;
+            }
         }
     }//GEN-LAST:event_jNostaKorttiActionPerformed
 
     private void jLopetaVuoroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jLopetaVuoroActionPerformed
-        if (voikoLopettaa) {
+        if (voikoLopettaa == 0) {
             MuuLogiikka.getVuoro().lopetaVuoroGUI();
             if (MuuLogiikka.getVuoro().getVoitto() == 1) {
                 MuuLogiikka.voittoGUI();
@@ -221,11 +356,16 @@ public class VuoroRuutu extends javax.swing.JFrame {
     private void jLuovutaOKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jLuovutaOKActionPerformed
         MuuLogiikka.getVuoro().getPoyta().poistaPelaaja(MuuLogiikka.getVuoro()
                 .getPoyta().getTamanVuoronPelaaja());
-        if (MuuLogiikka.getVuoro().getPoyta().getPelaajat().size() == 1){
+        if (MuuLogiikka.getVuoro().getPoyta().getPelaajat().size() == 1) {
             MuuLogiikka.getVuoro().getPoyta().setTamanVuoronPelaaja();
             this.setVisible(false);
             MuuLogiikka.voittoGUI();
             MuuLogiikka.nollaaPeli();
+        } else {
+            this.setVisible(false);
+            MuuLogiikka.getVuoro().jalkivalmistelut();
+            MuuLogiikka.getVuoro().vuoroGUI();
+
         }
     }//GEN-LAST:event_jLuovutaOKActionPerformed
 
@@ -267,19 +407,31 @@ public class VuoroRuutu extends javax.swing.JFrame {
         });
     }
 
+    
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.Box.Filler filler1;
     private javax.swing.JLabel jEtOleNostanut3;
+    private javax.swing.JLabel jKortitLoppuPoydastaJaPakasta;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JButton jLopetaVuoro;
     private javax.swing.JButton jLuovuta;
     private javax.swing.JButton jLuovutaOK;
     private javax.swing.JButton jLuovutaPeruuta;
     private javax.swing.JButton jNostaKortti;
     private javax.swing.JLabel jNostitJoKolme;
+    private javax.swing.JList<String> jOmatKortit;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JButton jPelaa;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JToggleButton jToggleButton2;
+    private javax.swing.JLabel jVastustaja2;
+    private javax.swing.JLabel jVastustaja3;
     // End of variables declaration//GEN-END:variables
 }

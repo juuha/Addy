@@ -154,4 +154,8 @@ public class Poyta {
             pelaajat.remove(apu);
         }
     }
+    
+    public void tyhjennaPoyta(){
+        poydallaOlevatKortit = new ArrayList();
+    }
 }

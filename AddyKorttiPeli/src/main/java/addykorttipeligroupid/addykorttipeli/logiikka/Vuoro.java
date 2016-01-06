@@ -195,7 +195,12 @@ public class Vuoro {
             return true;
         } else {
             if (poyta.getPakka().montaPakassa() < 2) {
+                if(poyta.getPoydallaOlevatKortit().size()>= 1){
                 poyta.getPakka().sekoitaPakkaan(poyta.getPoydallaOlevatKortit());
+                poyta.tyhjennaPoyta();
+                } else {
+                    
+                }
             }
             Kortti apuKortti = poyta.getPakka().otaEka();
             poyta.getTamanVuoronPelaaja().nostaKortti(apuKortti);
