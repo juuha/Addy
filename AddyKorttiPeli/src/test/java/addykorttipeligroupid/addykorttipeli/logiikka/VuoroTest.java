@@ -1,9 +1,11 @@
 
 package addykorttipeligroupid.addykorttipeli.logiikka;
 
+import addykorttipeligroupid.addykorttipeli.Kortti;
 import addykorttipeligroupid.addykorttipeli.Pakka;
 import addykorttipeligroupid.addykorttipeli.Pelaaja;
 import addykorttipeligroupid.addykorttipeli.Poyta;
+import java.util.ArrayList;
 import java.util.Scanner;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -40,7 +42,6 @@ public class VuoroTest {
         poyta.lisaaPelaaja(new Pelaaja("Wonderwoman"));
         lukija = new Scanner(System.in);
         vuoro = new Vuoro(lukija, poyta);
-        
     }
     
     @After
@@ -61,6 +62,83 @@ public class VuoroTest {
         int apu = poyta.getTamanVuoronPelaaja().montaKorttiaKadessa();
         assertEquals(7, apu);
     }
+    
+    @Test
+    public void testVuoroGUI() {
+        
+    }
+    
+    @Test
+    public void testGetVoitto() {
+        assertEquals(0, vuoro.getVoitto());
+    }
+    
+    @Test
+    public void testValmistelutGUI() {
+        vuoro.aloitaPeli();
+        vuoro.getPoyta().getTamanVuoronPelaaja().nostaKortti(new Kortti("Hertta", 5));
+        vuoro.valmistelutGUI();
+        assertEquals(0, vuoro.getPoyta().getTamanVuoronPelaaja().getTallaVuorollaNostettu());
+    }
+
+    
+    @Test
+    public void testJalkivalmistelut() {
+        vuoro.aloitaPeli();
+        vuoro.jalkivalmistelut();
+        assertEquals("Superman", vuoro.getPoyta().getTamanVuoronPelaaja().getNimi());
+    }
+    
+    @Test
+    public void testJalkivalmistelut2() {
+        vuoro.aloitaPeli();
+        vuoro.getPoyta().setTamanVuoronPelaaja();
+        vuoro.jalkivalmistelut();
+        assertEquals(true, vuoro.getPoyta().onkoEkaVuoro());
+    }
+
+    
+    @Test
+    public void testNostaKorttiGUI() {
+        vuoro.aloitaPeli();
+        vuoro.getPoyta().getTamanVuoronPelaaja().nostaKortti(new Kortti("jep", 5));
+        vuoro.getPoyta().getTamanVuoronPelaaja().nostaKortti(new Kortti("jep", 6));
+        vuoro.getPoyta().getTamanVuoronPelaaja().nostaKortti(new Kortti("jep", 7));
+        assertEquals(true, vuoro.nostaKorttiGUI());
+    }
+    
+//    @Test  ongelma
+//    public void testNostaKorttiGUI2() {
+//        vuoro.aloitaPeli();
+//        int apu = vuoro.getPoyta().getPakka().montaPakassa();
+//        for (int i = 0; i < apu; i++) {
+//            vuoro.getPoyta().getPakka().otaEka();
+//        }
+//        
+//        vuoro.getPoyta().laitaPoydallaOleviinKortteihin(new Kortti("jep", 5));
+//        vuoro.getPoyta().laitaPoydallaOleviinKortteihin(new Kortti("jep", 7));
+//        vuoro.getPoyta().laitaPoydallaOleviinKortteihin(new Kortti("jep", 8));
+//        vuoro.nostaKorttiGUI();
+//        
+//        assertEquals(0, vuoro.getPoyta().getPoydallaOlevatKortit().size());
+//        
+//    }
+    
+    @Test
+    public void testNostaKorttiGUI3() {
+        vuoro.aloitaPeli();
+        vuoro.valmistelutGUI();
+        assertEquals(0, vuoro.getPoyta().getTamanVuoronPelaaja().getTallaVuorollaNostettu());
+    }
+
+    
+    @Test
+    public void testGetPoyta() {
+        assertEquals("Superman", vuoro.getPoyta().getPelaajat().get(1).getNimi());
+    }
+
+    
+    
 
     
     

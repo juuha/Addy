@@ -156,6 +156,8 @@ public class Poyta {
     }
     
     public void tyhjennaPoyta(){
-        poydallaOlevatKortit = new ArrayList();
+        poydallaOlevatKortit.removeAll(poydallaOlevatKortit);
     }
+    
+    
 }
