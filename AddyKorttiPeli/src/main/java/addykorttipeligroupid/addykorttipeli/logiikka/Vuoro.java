@@ -45,34 +45,35 @@ public class Vuoro {
      * 
      * @return palauttaa tiedon voitosta
      */
-    public int vuoro() {
-        valmistelut();
-        while (true) {
-            System.out.println("Pöydän päällimmäinen kortti on: " + poyta.getPaallimmainen());
-            System.out.println(poyta.getTamanVuoronPelaaja().kadessaOlevatKortit());
-            System.out.println("Mitä tehdään? (pelaa/nosta/lopeta vuoro/tilanne).");
-            String komento = lukija.nextLine();
-            if (komento.equals("nosta")) {
-                nostaKortti();
-            } else if (komento.equals("lopeta vuoro")) {
-                if (lopetavuoro()) {
-                    break;
-                }
-            } else if (komento.equals("pelaa")) {
-                if (pelaa()) {
-                    break;
-                }
-            } else if (komento.equals("tilanne")) {
-                tilanne();
-            } else {
-                System.out.println("\nVirheellinen syöte. Anna jokin seuraavista"
-                        + " komennoista (pelaa/nosta/lopeta vuoro/tilanne). ");
-            }
-        }
-        jalkivalmistelut();
-
-        return voitto;
-    }
+//      vanha
+//    public int vuoro() {
+//        valmistelut();
+//        while (true) {
+//            System.out.println("Pöydän päällimmäinen kortti on: " + poyta.getPaallimmainen());
+//            System.out.println(poyta.getTamanVuoronPelaaja().kadessaOlevatKortit());
+//            System.out.println("Mitä tehdään? (pelaa/nosta/lopeta vuoro/tilanne).");
+//            String komento = lukija.nextLine();
+//            if (komento.equals("nosta")) {
+//                nostaKortti();
+//            } else if (komento.equals("lopeta vuoro")) {
+//                if (lopetavuoro()) {
+//                    break;
+//                }
+//            } else if (komento.equals("pelaa")) {
+//                if (pelaa()) {
+//                    break;
+//                }
+//            } else if (komento.equals("tilanne")) {
+//                tilanne();
+//            } else {
+//                System.out.println("\nVirheellinen syöte. Anna jokin seuraavista"
+//                        + " komennoista (pelaa/nosta/lopeta vuoro/tilanne). ");
+//            }
+//        }
+//        jalkivalmistelut();
+//
+//        return voitto;
+//    }
     
     /**
      *
@@ -95,18 +96,18 @@ public class Vuoro {
 
         poyta.setTamanVuoronPelaaja();
     }
-
-    private void valmistelut() {
-        voitto = 0;
-        poyta.getTamanVuoronPelaaja().nollaaKorttienNostot();
-        if (poyta.onkoEkaVuoro()) {
-            System.out.println(poyta.getViimeVuorollaPelattu());
-        }
-        System.out.println("Paina palautusnäppäintä (enteriä) aloittaaksesi pelaaja "
-                + poyta.getTamanVuoronPelaaja().getNimi() + ":n vuoro.");
-        lukija.nextLine();
-
-    }
+//      vanha
+//    private void valmistelut() {
+//        voitto = 0;
+//        poyta.getTamanVuoronPelaaja().nollaaKorttienNostot();
+//        if (poyta.onkoEkaVuoro()) {
+//            System.out.println(poyta.getViimeVuorollaPelattu());
+//        }
+//        System.out.println("Paina palautusnäppäintä (enteriä) aloittaaksesi pelaaja "
+//                + poyta.getTamanVuoronPelaaja().getNimi() + ":n vuoro.");
+//        lukija.nextLine();
+//
+//    }
     
     private void valmistelutGUI() {
         voitto = 0;
@@ -176,19 +177,19 @@ public class Vuoro {
 
         return false;
     }
-
-    private void nostaKortti() {
-        if (poyta.getTamanVuoronPelaaja().getTallaVuorollaNostettu() >= 3) {
-            System.out.println("\nNostit jo 3 korttia tällä vuorolla.");
-        } else {
-            if (poyta.getPakka().montaPakassa() < 2) {
-                poyta.getPakka().sekoitaPakkaan(poyta.getPoydallaOlevatKortit());
-            }
-            Kortti apuKortti = poyta.getPakka().otaEka();
-            poyta.getTamanVuoronPelaaja().nostaKortti(apuKortti);
-            System.out.println("");
-        }
-    }
+//        vanha
+//    private void nostaKortti() {
+//        if (poyta.getTamanVuoronPelaaja().getTallaVuorollaNostettu() >= 3) {
+//            System.out.println("\nNostit jo 3 korttia tällä vuorolla.");
+//        } else {
+//            if (poyta.getPakka().montaPakassa() < 2) {
+//                poyta.getPakka().sekoitaPakkaan(poyta.getPoydallaOlevatKortit());
+//            }
+//            Kortti apuKortti = poyta.getPakka().otaEka();
+//            poyta.getTamanVuoronPelaaja().nostaKortti(apuKortti);
+//            System.out.println("");
+//        }
+//    }
     
     public boolean nostaKorttiGUI(){
         if (poyta.getTamanVuoronPelaaja().getTallaVuorollaNostettu() >= 3) {
@@ -207,15 +208,15 @@ public class Vuoro {
         }
         return false;
     }
-
-    private boolean lopetavuoro() {
-        if (poyta.getTamanVuoronPelaaja().getTallaVuorollaNostettu() == 3) {
-            return true;
-        } else {
-            System.out.println("\nEt ole nostanut kolmea kertaa tällä vuorolla.");
-            return false;
-        }
-    }
+//      vanha
+//    private boolean lopetavuoro() {
+//        if (poyta.getTamanVuoronPelaaja().getTallaVuorollaNostettu() == 3) {
+//            return true;
+//        } else {
+//            System.out.println("\nEt ole nostanut kolmea kertaa tällä vuorolla.");
+//            return false;
+//        }
+//    }
     
     public void lopetaVuoroGUI(){
         jalkivalmistelut();
@@ -233,14 +234,14 @@ public class Vuoro {
         System.out.println("summa: " + summa);
         return poyta.getPaallimmainen().getNumeroArvo() == summa;
     }
-
-    private void tilanne() {
-        System.out.println("");
-        for (Pelaaja pelaaja : poyta.getPelaajat()) {
-            System.out.println("Pelaaja " + pelaaja.getNimi() + ": "
-                    + pelaaja.montaKorttiaKadessa() + " korttia kädessä.");
-        }
-    }
+//      vanha
+//    private void tilanne() {
+//        System.out.println("");
+//        for (Pelaaja pelaaja : poyta.getPelaajat()) {
+//            System.out.println("Pelaaja " + pelaaja.getNimi() + ": "
+//                    + pelaaja.montaKorttiaKadessa() + " korttia kädessä.");
+//        }
+//    }
     
     public Poyta getPoyta(){
         return poyta;
