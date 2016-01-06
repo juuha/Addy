@@ -4,6 +4,7 @@ import addykorttipeligroupid.addykorttipeli.Pakka;
 import addykorttipeligroupid.addykorttipeli.Pelaaja;
 import addykorttipeligroupid.addykorttipeli.Poyta;
 import graafinenkayttoliittyma.NimenValinta;
+import graafinenkayttoliittyma.VoittoRuutu;
 import java.util.Scanner;
 
 /**
@@ -71,7 +72,10 @@ public class MuuLogiikka {
     
     public static void pelaaGUI() {
         vuoro = new Vuoro(lukija, poyta);
-        vuoro.aloitaPeli();
+        if (vuoro.getPoyta().onkoEkaVuoro()){
+            vuoro.aloitaPeli();
+            vuoro.getPoyta().ekaVuoroOhi();
+        }
         vuoro.vuoroGUI();
     }
 
@@ -118,9 +122,13 @@ public class MuuLogiikka {
         }
     }
 
-    private static void voitto() {
+    public static void voitto() {
         Pelaaja apu = poyta.getTamanVuoronPelaaja();
         System.out.println("Pelaaja " + apu.getNimi() + " voitti pelin!");
+    }
+    
+    public static void voittoGUI(){
+        VoittoRuutu.main(null);
     }
 
     /**
@@ -160,7 +168,7 @@ public class MuuLogiikka {
         return vuoro;
     }
     
-    public static void setVuoro(Vuoro v){
-        vuoro = v;
+    public static void nollaaPeli(){
+        poyta = new Poyta(new Pakka());
     }
 }

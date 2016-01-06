@@ -15,6 +15,7 @@ import java.awt.Component;
 public class VuoroRuutu extends javax.swing.JFrame {
 
     private boolean voikoLopettaa = false;
+    private static VuoroRuutu vr;
 
     /**
      * Creates new form VuoroRuutu
@@ -97,6 +98,11 @@ public class VuoroRuutu extends javax.swing.JFrame {
 
         jLuovutaOK.setText("Luovuta");
         jLuovutaOK.setVisible(false);
+        jLuovutaOK.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jLuovutaOKActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -111,15 +117,13 @@ public class VuoroRuutu extends javax.swing.JFrame {
                 .addComponent(jLopetaVuoro, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(filler1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLuovutaPeruuta)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 121, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLuovuta))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLuovutaOK)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                    .addComponent(jLuovutaOK))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -196,16 +200,34 @@ public class VuoroRuutu extends javax.swing.JFrame {
     private void jNostaKorttiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jNostaKorttiActionPerformed
         if (MuuLogiikka.getVuoro().nostaKorttiGUI()) {
             joKolmeNostettu();
+            jEtOleNostanut3.setVisible(false);
         }
     }//GEN-LAST:event_jNostaKorttiActionPerformed
 
     private void jLopetaVuoroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jLopetaVuoroActionPerformed
         if (voikoLopettaa) {
-            //lopeta vuoro
+            MuuLogiikka.getVuoro().lopetaVuoroGUI();
+            if (MuuLogiikka.getVuoro().getVoitto() == 1) {
+                MuuLogiikka.voittoGUI();
+            } else {
+                vr.setVisible(false);
+                MuuLogiikka.getVuoro().vuoroGUI();
+            }
         } else {
             etOleNostanutKolmea();
         }
     }//GEN-LAST:event_jLopetaVuoroActionPerformed
+
+    private void jLuovutaOKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jLuovutaOKActionPerformed
+        MuuLogiikka.getVuoro().getPoyta().poistaPelaaja(MuuLogiikka.getVuoro()
+                .getPoyta().getTamanVuoronPelaaja());
+        if (MuuLogiikka.getVuoro().getPoyta().getPelaajat().size() == 1){
+            MuuLogiikka.getVuoro().getPoyta().setTamanVuoronPelaaja();
+            this.setVisible(false);
+            MuuLogiikka.voittoGUI();
+            MuuLogiikka.nollaaPeli();
+        }
+    }//GEN-LAST:event_jLuovutaOKActionPerformed
 
     /**
      * @param args the command line arguments
@@ -237,7 +259,7 @@ public class VuoroRuutu extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                VuoroRuutu vr = new VuoroRuutu();
+                vr = new VuoroRuutu();
                 vr.setLocationRelativeTo(null);
                 vr.setVisible(true);
 

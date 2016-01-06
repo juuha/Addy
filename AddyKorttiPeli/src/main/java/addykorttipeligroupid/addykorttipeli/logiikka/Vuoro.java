@@ -80,11 +80,10 @@ public class Vuoro {
      */
     public void vuoroGUI() {
         valmistelutGUI();
-        
-        
+        AloitaVuoroRuutu.main(null);
     }
 
-    private void jalkivalmistelut() {
+    public void jalkivalmistelut() {
         if (poyta.getTamanVuoronPelaaja().montaKorttiaKadessa() == 0) {
             voitto = 1;
             return;
@@ -112,7 +111,6 @@ public class Vuoro {
     private void valmistelutGUI() {
         voitto = 0;
         poyta.getTamanVuoronPelaaja().nollaaKorttienNostot();
-        AloitaVuoroRuutu.main(null);
     }
 
     private boolean pelaa() {
@@ -213,6 +211,11 @@ public class Vuoro {
             return false;
         }
     }
+    
+    public void lopetaVuoroGUI(){
+        jalkivalmistelut();
+        
+    }
 
     private boolean voikoKortitPelata(ArrayList<Kortti> pelattavatKortit) {
         int summa = 0;
@@ -236,6 +239,10 @@ public class Vuoro {
     
     public Poyta getPoyta(){
         return poyta;
+    }
+    
+    public int getVoitto(){
+        return voitto;
     }
 
     

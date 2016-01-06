@@ -61,7 +61,9 @@ public class Poyta {
      */
     public void setTamanVuoronPelaaja(){
         tamanVuoronPelaaja = seuraavanVuoronPelaaja;
+        if (pelaajat.size() > 1){
         setSeuraavanVuoronpelaaja();
+        }
     }
     
     
@@ -139,5 +141,17 @@ public class Poyta {
     
     public ArrayList<Kortti> getPoydallaOlevatKortit(){
         return poydallaOlevatKortit;
+    }
+    
+    public void poistaPelaaja(Pelaaja pelaaja){
+        int apu = -1;
+        for (int i = 0; i < pelaajat.size(); i++) {
+            if (pelaajat.get(i) == pelaaja){
+                apu = i;
+            }
+        }
+        if (apu != -1){
+            pelaajat.remove(apu);
+        }
     }
 }
