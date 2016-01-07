@@ -104,52 +104,17 @@ public class Vuoro {
         }
     }
 
-//      vanha
-//    private boolean pelaaa() {
-//        while (true) {
-//            System.out.println("Valitse kortteja muodossa \"hertta 2, hertta 3\""
-//                    + " tai palaa komennolla \"palaa\".");
-//            String komento = "hertta 12";
-//            if (komento.equals("palaa")) {
-//                return false;
-//            } else {
-//                ArrayList<Kortti> pelattavatKortit = new ArrayList();
-//                if (pelattavatKortit != null) {
-//                    if (voikoKortitPelata(pelattavatKortit)) {
-//                        poyta.setPaallimmainen(pelattavatKortit.get(0));
-//                        for (Kortti kortti : pelattavatKortit) {
-//                            poyta.getTamanVuoronPelaaja().otaKorttiKadesta(kortti.getMaa(), kortti.getArvo());
-//                            poyta.laitaPoydallaOleviinKortteihin(kortti);
-//                        }
-//                        break;
-//                    }
-//                }
-//            }
-//        }
-//        return true;
-//    }
 
     public void pelaa(ArrayList<Kortti> kortit) {
-        poyta.setPaallimmainen(paallimmaisenaPelattava);
+        poyta.setPaallimmainen(kortit.get(0));   // jos ei
+//        poyta.setPaallimmainen(paallimmaisenaPelattava);   jos MikaKorteistaPaallimaiseksiRuutu toimii
         for (Kortti kortti : kortit) {
             poyta.getTamanVuoronPelaaja().otaKorttiKadesta(kortti.getMaa(), kortti.getArvo());
             poyta.laitaPoydallaOleviinKortteihin(kortti);
         }
     }
 
-//        vanha
-//    private void nostaKortti() {
-//        if (poyta.getTamanVuoronPelaaja().getTallaVuorollaNostettu() >= 3) {
-//            System.out.println("\nNostit jo 3 korttia tällä vuorolla.");
-//        } else {
-//            if (poyta.getPakka().montaPakassa() < 2) {
-//                poyta.getPakka().sekoitaPakkaan(poyta.getPoydallaOlevatKortit());
-//            }
-//            Kortti apuKortti = poyta.getPakka().otaEka();
-//            poyta.getTamanVuoronPelaaja().nostaKortti(apuKortti);
-//            System.out.println("");
-//        }
-//    }
+
     public boolean nostaKortti() {
         if (poyta.getTamanVuoronPelaaja().getTallaVuorollaNostettu() >= 3) {
             return true;

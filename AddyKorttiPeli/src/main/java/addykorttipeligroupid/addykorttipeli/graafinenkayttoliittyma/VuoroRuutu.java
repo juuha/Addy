@@ -483,7 +483,7 @@ public class VuoroRuutu extends javax.swing.JFrame {
                 if (MuuLogiikka.getVuoro().voikoKortitPelata(pelattavatKortit)) {
                     MuuLogiikka.getVuoro().setPaallimaisenaPelattavat(pelattavatKortit);
                     
-                    MikaKorteistaPaallimaiseksiRuutu.main(null);
+//                    MikaKorteistaPaallimaiseksiRuutu.main(null);   ei tee järjestyksessä
                     
                     MuuLogiikka.getVuoro().pelaa(pelattavatKortit);
                     voikoLopettaa = 0;
