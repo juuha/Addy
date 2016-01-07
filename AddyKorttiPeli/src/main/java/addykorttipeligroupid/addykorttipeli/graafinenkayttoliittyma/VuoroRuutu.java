@@ -121,6 +121,18 @@ public class VuoroRuutu extends javax.swing.JFrame {
         }
         return "";
     }
+    
+    public void lopetaVuoro(){
+        MuuLogiikka.getVuoro().jalkivalmistelut();
+            if (MuuLogiikka.getVuoro().getVoitto() == 1) {
+                MuuLogiikka.voitto();
+                MuuLogiikka.nollaaPeli();
+                vr.setVisible(false);
+            } else {
+                vr.setVisible(false);
+                MuuLogiikka.getVuoro().vuoro();
+            }
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -437,14 +449,7 @@ public class VuoroRuutu extends javax.swing.JFrame {
         jEiValittujaKortteja.setVisible(false);
         jVaaraSumma.setVisible(false);
         if (voikoLopettaa == 0) {
-            MuuLogiikka.getVuoro().jalkivalmistelut();
-            if (MuuLogiikka.getVuoro().getVoitto() == 1) {
-                MuuLogiikka.voitto();
-                vr.setVisible(false);
-            } else {
-                vr.setVisible(false);
-                MuuLogiikka.getVuoro().vuoro();
-            }
+            lopetaVuoro();
         } else {
             etOleNostanutKolmea();
         }
@@ -486,15 +491,15 @@ public class VuoroRuutu extends javax.swing.JFrame {
 //                    MikaKorteistaPaallimaiseksiRuutu.main(null);   ei tee järjestyksessä
                     
                     MuuLogiikka.getVuoro().pelaa(pelattavatKortit);
-                    voikoLopettaa = 0;
-                    jLopetaVuoroActionPerformed(null);
+                    
+                    lopetaVuoro();
                 } else {
                     jVaaraSumma.setVisible(true);
                 }
             } else if (MuuLogiikka.getVuoro().voikoKortitPelata(pelattavatKortit)) {
                 MuuLogiikka.getVuoro().pelaa(pelattavatKortit);
-                voikoLopettaa = 0;
-                jLopetaVuoroActionPerformed(null);
+                
+                lopetaVuoro();
             } else {
                 jVaaraSumma.setVisible(true);
             }
