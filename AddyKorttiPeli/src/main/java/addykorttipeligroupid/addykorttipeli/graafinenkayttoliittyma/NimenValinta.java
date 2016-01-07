@@ -96,7 +96,7 @@ public class NimenValinta extends javax.swing.JFrame {
             MuuLogiikka.odota();
             this.setVisible(false);
             if (MuuLogiikka.getOdota() == 0){
-                MuuLogiikka.pelaaGUI();
+                MuuLogiikka.pelaa();
             }
         }
     }//GEN-LAST:event_jOkActionPerformed

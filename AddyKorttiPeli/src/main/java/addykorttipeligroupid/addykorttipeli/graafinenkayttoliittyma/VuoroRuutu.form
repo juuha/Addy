@@ -40,16 +40,18 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="jPanel1" max="32767" attributes="0"/>
                   <Component id="jPanel3" alignment="1" max="32767" attributes="0"/>
+                  <Component id="jPanel4" alignment="1" max="32767" attributes="0"/>
+                  <Component id="jPanel2" alignment="0" max="32767" attributes="0"/>
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jNostitJoKolme" min="-2" max="-2" attributes="0"/>
                           <Component id="jEtOleNostanut3" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="jKortitLoppuPoydastaJaPakasta" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="jEiValittujaKortteja" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="jVaaraSumma" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
-                  <Component id="jPanel4" alignment="1" max="32767" attributes="0"/>
-                  <Component id="jPanel2" alignment="0" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -62,8 +64,12 @@
               <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="jPanel4" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="42" max="32767" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="jPanel3" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Component id="jVaaraSumma" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
+              <Component id="jEiValittujaKortteja" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jKortitLoppuPoydastaJaPakasta" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
@@ -404,6 +410,22 @@
       </Properties>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="jKortitLoppuPoydastaJaPakasta.setVisible(false);&#xa;"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jEiValittujaKortteja">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Et ole valinnut yht&#xe4;&#xe4;n korttia. Valitse yhdest&#xe4; kolmeen korttia."/>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="jEiValittujaKortteja.setVisible(false);&#xa;"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jVaaraSumma">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Valitsemiesi korttien summa ei ole sama kuin p&#xe4;&#xe4;llimm&#xe4;isen kortin arvo."/>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="jVaaraSumma.setVisible(false);&#xa;"/>
       </AuxValues>
     </Component>
   </SubComponents>

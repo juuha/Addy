@@ -127,7 +127,7 @@ public class PelaajaMaaranValitsemisRuutu extends javax.swing.JFrame {
     private void jOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jOkActionPerformed
         int monta = Integer.parseInt(jPelaajaMaara.getSelectedValue());
         this.setVisible(false);
-        MuuLogiikka.luoPelaajatGUI(monta);
+        MuuLogiikka.luoPelaajat(monta);
     }//GEN-LAST:event_jOkActionPerformed
 
     /**

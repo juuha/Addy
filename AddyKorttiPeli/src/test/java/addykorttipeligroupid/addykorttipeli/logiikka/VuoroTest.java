@@ -41,7 +41,7 @@ public class VuoroTest {
         poyta.lisaaPelaaja(new Pelaaja("Superman"));
         poyta.lisaaPelaaja(new Pelaaja("Wonderwoman"));
         lukija = new Scanner(System.in);
-        vuoro = new Vuoro(lukija, poyta);
+        vuoro = new Vuoro(poyta);
     }
     
     @After
@@ -64,7 +64,7 @@ public class VuoroTest {
     }
     
     @Test
-    public void testVuoroGUI() {
+    public void testVuoro() {
         
     }
     
@@ -74,10 +74,10 @@ public class VuoroTest {
     }
     
     @Test
-    public void testValmistelutGUI() {
+    public void testValmistelut() {
         vuoro.aloitaPeli();
         vuoro.getPoyta().getTamanVuoronPelaaja().nostaKortti(new Kortti("Hertta", 5));
-        vuoro.valmistelutGUI();
+        vuoro.valmistelut();
         assertEquals(0, vuoro.getPoyta().getTamanVuoronPelaaja().getTallaVuorollaNostettu());
     }
 
@@ -99,12 +99,12 @@ public class VuoroTest {
 
     
     @Test
-    public void testNostaKorttiGUI() {
+    public void testNostaKortti() {
         vuoro.aloitaPeli();
         vuoro.getPoyta().getTamanVuoronPelaaja().nostaKortti(new Kortti("jep", 5));
         vuoro.getPoyta().getTamanVuoronPelaaja().nostaKortti(new Kortti("jep", 6));
         vuoro.getPoyta().getTamanVuoronPelaaja().nostaKortti(new Kortti("jep", 7));
-        assertEquals(true, vuoro.nostaKorttiGUI());
+        assertEquals(true, vuoro.nostaKortti());
     }
     
 //    @Test  ongelma
@@ -127,7 +127,7 @@ public class VuoroTest {
     @Test
     public void testNostaKorttiGUI3() {
         vuoro.aloitaPeli();
-        vuoro.valmistelutGUI();
+        vuoro.valmistelut();
         assertEquals(0, vuoro.getPoyta().getTamanVuoronPelaaja().getTallaVuorollaNostettu());
     }
 

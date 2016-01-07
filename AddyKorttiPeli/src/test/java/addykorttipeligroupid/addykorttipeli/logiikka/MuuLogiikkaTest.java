@@ -54,9 +54,9 @@ public class MuuLogiikkaTest {
      * Test of pelaaGUI method, of class MuuLogiikka.
      */
     @Test
-    public void testPelaaGUI() {
+    public void testPelaa() {
         System.out.println("pelaaGUI");
-        MuuLogiikka.pelaaGUI();
+        MuuLogiikka.pelaa();
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
@@ -65,10 +65,10 @@ public class MuuLogiikkaTest {
      * Test of luoPelaajatGUI method, of class MuuLogiikka.
      */
     @Test
-    public void testLuoPelaajatGUI() {
+    public void testLuoPelaajat() {
         System.out.println("luoPelaajatGUI");
         int luku = 0;
-        MuuLogiikka.luoPelaajatGUI(luku);
+        MuuLogiikka.luoPelaajat(luku);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
@@ -77,9 +77,9 @@ public class MuuLogiikkaTest {
      * Test of voittoGUI method, of class MuuLogiikka.
      */
     @Test
-    public void testVoittoGUI() {
+    public void testVoitto() {
         System.out.println("voittoGUI");
-        MuuLogiikka.voittoGUI();
+        MuuLogiikka.voitto();
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
@@ -120,18 +120,7 @@ public class MuuLogiikkaTest {
         fail("The test case is a prototype.");
     }
 
-    /**
-     * Test of getLukija method, of class MuuLogiikka.
-     */
-    @Test
-    public void testGetLukija() {
-        System.out.println("getLukija");
-        Scanner expResult = null;
-        Scanner result = MuuLogiikka.getLukija();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
+    
 
     /**
      * Test of getOdota method, of class MuuLogiikka.

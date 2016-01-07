@@ -8,6 +8,7 @@ package addykorttipeligroupid.addykorttipeli.graafinenkayttoliittyma;
 import addykorttipeligroupid.addykorttipeli.Kortti;
 import addykorttipeligroupid.addykorttipeli.logiikka.MuuLogiikka;
 import java.util.ArrayList;
+import java.util.List;
 import javax.swing.DefaultListModel;
 import javax.swing.JList;
 
@@ -22,6 +23,7 @@ public class VuoroRuutu extends javax.swing.JFrame {
     private int tamanvuoronpelaaja;
     private int ekapelaaja;
     private int tokapelaaja;
+    
 
     /**
      * Creates new form VuoroRuutu
@@ -58,11 +60,11 @@ public class VuoroRuutu extends javax.swing.JFrame {
         jKortitLoppuPoydastaJaPakasta.setVisible(true);
     }
 
-    public String getPaallimmainen() {
+    private String getPaallimmainen() {
         return MuuLogiikka.getVuoro().getPoyta().getPaallimmainen().toString();
     }
 
-    public String getEkaPelaaja() {
+    private String getEkaPelaaja() {
         for (int i = 0; i < MuuLogiikka.getVuoro().getPoyta().getPelaajat().size(); i++) {
             if (MuuLogiikka.getVuoro().getPoyta().getTamanVuoronPelaaja().getNimi()
                     .equals(MuuLogiikka.getVuoro().getPoyta().getPelaajat().get(i).getNimi())) {
@@ -83,7 +85,7 @@ public class VuoroRuutu extends javax.swing.JFrame {
         return "";
     }
 
-    public String getTokaPelaaja() {
+    private String getTokaPelaaja() {
         if (MuuLogiikka.getVuoro().getPoyta().getPelaajat().size() > 2) {
             for (int i = 0; i < MuuLogiikka.getVuoro().getPoyta().getPelaajat().size(); i++) {
                 if (MuuLogiikka.getVuoro().getPoyta().getTamanVuoronPelaaja().getNimi()
@@ -101,7 +103,7 @@ public class VuoroRuutu extends javax.swing.JFrame {
         return "";
     }
 
-    public String getKolmasPelaaja() {
+    private String getKolmasPelaaja() {
         if (MuuLogiikka.getVuoro().getPoyta().getPelaajat().size() > 3) {
             for (int i = 0; i < MuuLogiikka.getVuoro().getPoyta().getPelaajat().size(); i++) {
                 if (MuuLogiikka.getVuoro().getPoyta().getTamanVuoronPelaaja().getNimi()
@@ -152,6 +154,8 @@ public class VuoroRuutu extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jKortti = new javax.swing.JLabel();
         jKortitLoppuPoydastaJaPakasta = new javax.swing.JLabel();
+        jEiValittujaKortteja = new javax.swing.JLabel();
+        jVaaraSumma = new javax.swing.JLabel();
 
         jToggleButton1.setText("jToggleButton1");
 
@@ -344,6 +348,12 @@ public class VuoroRuutu extends javax.swing.JFrame {
         jKortitLoppuPoydastaJaPakasta.setText("Pakka ja pelatut kortit ovat loppu, pelaa kortteja, lopeta vuoro tai luovuta.");
         jKortitLoppuPoydastaJaPakasta.setVisible(false);
 
+        jEiValittujaKortteja.setText("Et ole valinnut yhtään korttia. Valitse yhdestä kolmeen korttia.");
+        jEiValittujaKortteja.setVisible(false);
+
+        jVaaraSumma.setText("Valitsemiesi korttien summa ei ole sama kuin päällimmäisen kortin arvo.");
+        jVaaraSumma.setVisible(false);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -353,14 +363,16 @@ public class VuoroRuutu extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jNostitJoKolme)
                             .addComponent(jEtOleNostanut3)
-                            .addComponent(jKortitLoppuPoydastaJaPakasta))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jKortitLoppuPoydastaJaPakasta)
+                            .addComponent(jEiValittujaKortteja)
+                            .addComponent(jVaaraSumma))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -370,8 +382,12 @@ public class VuoroRuutu extends javax.swing.JFrame {
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jVaaraSumma)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jEiValittujaKortteja)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jKortitLoppuPoydastaJaPakasta)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -400,11 +416,13 @@ public class VuoroRuutu extends javax.swing.JFrame {
     }//GEN-LAST:event_jLuovutaPeruutaActionPerformed
 
     private void jNostaKorttiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jNostaKorttiActionPerformed
+        jEiValittujaKortteja.setVisible(false);
+        jVaaraSumma.setVisible(false);
         if (MuuLogiikka.getVuoro().getPoyta().getPakka().montaPakassa() < 1
                 && MuuLogiikka.getVuoro().getPoyta().getPoydallaOlevatKortit().size() < 1) {
             pakkaJaPoytaLoppu();
         } else {
-            if (MuuLogiikka.getVuoro().nostaKorttiGUI()) {
+            if (MuuLogiikka.getVuoro().nostaKortti()) {
                 joKolmeNostettu();
                 jEtOleNostanut3.setVisible(false);
             }
@@ -416,13 +434,16 @@ public class VuoroRuutu extends javax.swing.JFrame {
     }//GEN-LAST:event_jNostaKorttiActionPerformed
 
     private void jLopetaVuoroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jLopetaVuoroActionPerformed
+        jEiValittujaKortteja.setVisible(false);
+        jVaaraSumma.setVisible(false);
         if (voikoLopettaa == 0) {
             MuuLogiikka.getVuoro().jalkivalmistelut();
             if (MuuLogiikka.getVuoro().getVoitto() == 1) {
-                MuuLogiikka.voittoGUI();
+                MuuLogiikka.voitto();
+                vr.setVisible(false);
             } else {
                 vr.setVisible(false);
-                MuuLogiikka.getVuoro().vuoroGUI();
+                MuuLogiikka.getVuoro().vuoro();
             }
         } else {
             etOleNostanutKolmea();
@@ -430,23 +451,54 @@ public class VuoroRuutu extends javax.swing.JFrame {
     }//GEN-LAST:event_jLopetaVuoroActionPerformed
 
     private void jLuovutaOKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jLuovutaOKActionPerformed
+        jEiValittujaKortteja.setVisible(false);
+        jVaaraSumma.setVisible(false);
         MuuLogiikka.getVuoro().getPoyta().poistaPelaaja(MuuLogiikka.getVuoro()
                 .getPoyta().getTamanVuoronPelaaja());
         if (MuuLogiikka.getVuoro().getPoyta().getPelaajat().size() == 1) {
             MuuLogiikka.getVuoro().getPoyta().setTamanVuoronPelaaja();
             this.setVisible(false);
-            MuuLogiikka.voittoGUI();
+            MuuLogiikka.voitto();
             MuuLogiikka.nollaaPeli();
         } else {
             this.setVisible(false);
             MuuLogiikka.getVuoro().jalkivalmistelut();
-            MuuLogiikka.getVuoro().vuoroGUI();
+            MuuLogiikka.getVuoro().vuoro();
 
         }
     }//GEN-LAST:event_jLuovutaOKActionPerformed
 
     private void jPelaaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPelaaActionPerformed
-        
+        if (jOmatKortit.getSelectedValuesList().isEmpty() || jOmatKortit.getSelectedValuesList().size() > 3) {
+            jEiValittujaKortteja.setVisible(true);
+        } else {
+            jEiValittujaKortteja.setVisible(false);
+            ArrayList<Kortti> pelattavatKortit = new ArrayList();
+            List<String> pelattavatKortitTekstina = jOmatKortit.getSelectedValuesList();
+            for (String kortti : pelattavatKortitTekstina) {
+                String[] maaJaArvo = kortti.split(" ");
+                pelattavatKortit.add(new Kortti(maaJaArvo[0], Integer.parseInt(maaJaArvo[1])));
+            }
+            if (pelattavatKortit.size() > 1) {
+                if (MuuLogiikka.getVuoro().voikoKortitPelata(pelattavatKortit)) {
+                    MuuLogiikka.getVuoro().setPaallimaisenaPelattavat(pelattavatKortit);
+                    
+                    MikaKorteistaPaallimaiseksiRuutu.main(null);
+                    
+                    MuuLogiikka.getVuoro().pelaa(pelattavatKortit);
+                    voikoLopettaa = 0;
+                    jLopetaVuoroActionPerformed(null);
+                } else {
+                    jVaaraSumma.setVisible(true);
+                }
+            } else if (MuuLogiikka.getVuoro().voikoKortitPelata(pelattavatKortit)) {
+                MuuLogiikka.getVuoro().pelaa(pelattavatKortit);
+                voikoLopettaa = 0;
+                jLopetaVuoroActionPerformed(null);
+            } else {
+                jVaaraSumma.setVisible(true);
+            }
+        }
     }//GEN-LAST:event_jPelaaActionPerformed
 
     /**
@@ -490,6 +542,7 @@ public class VuoroRuutu extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.Box.Filler filler1;
+    private javax.swing.JLabel jEiValittujaKortteja;
     private javax.swing.JLabel jEtOleNostanut3;
     private javax.swing.JLabel jKortitLoppuPoydastaJaPakasta;
     private javax.swing.JLabel jKortti;
@@ -509,6 +562,7 @@ public class VuoroRuutu extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JToggleButton jToggleButton2;
+    private javax.swing.JLabel jVaaraSumma;
     private javax.swing.JLabel jVastustaja1Kortit;
     private javax.swing.JLabel jVastustaja2kortit;
     private javax.swing.JLabel jVastustaja3kortit;

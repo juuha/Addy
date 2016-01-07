@@ -1,13 +1,9 @@
 package addykorttipeligroupid.addykorttipeli.logiikka;
 
 import addykorttipeligroupid.addykorttipeli.Kortti;
-import addykorttipeligroupid.addykorttipeli.Pelaaja;
 import addykorttipeligroupid.addykorttipeli.Poyta;
 import addykorttipeligroupid.addykorttipeli.graafinenkayttoliittyma.AloitaVuoroRuutu;
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Scanner;
-import java.util.Set;
 
 /**
  *
@@ -16,21 +12,25 @@ import java.util.Set;
 public class Vuoro {
 
     private Poyta poyta;
-    private Scanner lukija;
     private int voitto = 0;
+    private ArrayList<Kortti> paallimaisenaPelattavat;
+    private Kortti paallimmaisenaPelattava;
+
+    
+
+    
 
     /**
      *
-     * @param lukija
      * @param poyta
      */
-    public Vuoro(Scanner lukija, Poyta poyta) {
+    public Vuoro(Poyta poyta) {
         this.poyta = poyta;
-        this.lukija = lukija;
+
     }
 
     /**
-     *   Jakaa kortit ja antaa ensimmäisen vuoron ensimmäiselle pelaajalle.
+     * Jakaa kortit ja antaa ensimmäisen vuoron ensimmäiselle pelaajalle.
      */
     public void aloitaPeli() {
         poyta.setVuoroAlussa();
@@ -38,11 +38,10 @@ public class Vuoro {
     }
 
     /**
-     *      vanha
-     * Kysyy pelaajalta mitä tehdään (pelaa/nosta/lopeta vuoro/tilanne) ja kutsuu
-     * metodeja siitä riippuen mitä käskettiin tehdä. Lopuksi tarkistaa onko peli
-     * päättynyt.
-     * 
+     * vanha Kysyy pelaajalta mitä tehdään (pelaa/nosta/lopeta vuoro/tilanne) ja
+     * kutsuu metodeja siitä riippuen mitä käskettiin tehdä. Lopuksi tarkistaa
+     * onko peli päättynyt.
+     *
      * @return palauttaa tiedon voitosta
      */
 //      
@@ -74,13 +73,12 @@ public class Vuoro {
 //
 //        return voitto;
 //    }
-    
     /**
      *
      * @return
      */
-    public void vuoroGUI() {
-        valmistelutGUI();
+    public void vuoro() {
+        valmistelut();
         AloitaVuoroRuutu.main(null);
     }
 
@@ -96,39 +94,26 @@ public class Vuoro {
 
         poyta.setTamanVuoronPelaaja();
     }
-    
-//      vanha
-//    private void valmistelut() {
-//        voitto = 0;
-//        poyta.getTamanVuoronPelaaja().nollaaKorttienNostot();
-//        if (poyta.onkoEkaVuoro()) {
-//            System.out.println(poyta.getViimeVuorollaPelattu());
-//        }
-//        System.out.println("Paina palautusnäppäintä (enteriä) aloittaaksesi pelaaja "
-//                + poyta.getTamanVuoronPelaaja().getNimi() + ":n vuoro.");
-//        lukija.nextLine();
-//
-//    }
-    
-    public void valmistelutGUI() {
+
+    public void valmistelut() {
         voitto = 0;
         poyta.getTamanVuoronPelaaja().nollaaKorttienNostot();
-        if (poyta.onkoEkaVuoro()){
+        if (poyta.onkoEkaVuoro()) {
             poyta.setPaallimmainen(poyta.getPakka().otaEka());
             poyta.laitaPoydallaOleviinKortteihin(poyta.getPaallimmainen());
         }
     }
 
 //      vanha
-//    private boolean pelaa() {
+//    private boolean pelaaa() {
 //        while (true) {
 //            System.out.println("Valitse kortteja muodossa \"hertta 2, hertta 3\""
 //                    + " tai palaa komennolla \"palaa\".");
-//            String komento = lukija.nextLine();
+//            String komento = "hertta 12";
 //            if (komento.equals("palaa")) {
 //                return false;
 //            } else {
-//                ArrayList<Kortti> pelattavatKortit = valitseKortit(komento);
+//                ArrayList<Kortti> pelattavatKortit = new ArrayList();
 //                if (pelattavatKortit != null) {
 //                    if (voikoKortitPelata(pelattavatKortit)) {
 //                        poyta.setPaallimmainen(pelattavatKortit.get(0));
@@ -143,49 +128,15 @@ public class Vuoro {
 //        }
 //        return true;
 //    }
-    
-//      vanha
-//    private ArrayList<Kortti> valitseKortit(String komento) {
-//        ArrayList<Kortti> pelattavatKortit = new ArrayList();
-//        String[] kortit = komento.split(", ");
-//
-//        for (String annettuKortti : kortit) {
-//            String[] maaJaArvo = annettuKortti.split(" ");
-//            try {
-//                Kortti apuKortti = new Kortti(maaJaArvo[0],
-//                        Integer.parseInt(maaJaArvo[1]));
-//                if (poyta.getTamanVuoronPelaaja().getKorttiArvolta(
-//                        apuKortti.getMaa(), apuKortti.getArvo()) != null) {
-//                    pelattavatKortit.add(apuKortti);
-//                }
-//            } catch (Exception e) {
-//                System.out.println("\nVirheellinen syöte.");
-//                return null;
-//            }
-//        }
-//        if (olikoLaillinenSiirto(pelattavatKortit)) {
-//            return null;
-//        }
-//
-//        return pelattavatKortit;
-//    }
 
-//    vanha
-//    private boolean olikoLaillinenSiirto(ArrayList<Kortti> pelattavatKortit) {
-//        if (pelattavatKortit.size() > 3) {
-//            System.out.println("Pelasit liikaa kortteja.");
-//            return true;
-//        }
-//
-//        Set<Kortti> set = new HashSet<Kortti>(pelattavatKortit);
-//        if (set.size() < pelattavatKortit.size()) {
-//            System.out.println("Et voi pelata samaa korttia monta kertaa");
-//            return true;
-//        }
-//
-//        return false;
-//    }
-    
+    public void pelaa(ArrayList<Kortti> kortit) {
+        poyta.setPaallimmainen(paallimmaisenaPelattava);
+        for (Kortti kortti : kortit) {
+            poyta.getTamanVuoronPelaaja().otaKorttiKadesta(kortti.getMaa(), kortti.getArvo());
+            poyta.laitaPoydallaOleviinKortteihin(kortti);
+        }
+    }
+
 //        vanha
 //    private void nostaKortti() {
 //        if (poyta.getTamanVuoronPelaaja().getTallaVuorollaNostettu() >= 3) {
@@ -199,48 +150,23 @@ public class Vuoro {
 //            System.out.println("");
 //        }
 //    }
-    
-    public boolean nostaKorttiGUI(){
+    public boolean nostaKortti() {
         if (poyta.getTamanVuoronPelaaja().getTallaVuorollaNostettu() >= 3) {
             return true;
         } else {
             if (poyta.getPakka().montaPakassa() < 1) {
-                if(poyta.getPoydallaOlevatKortit().size() > 0){
-                poyta.getPakka().sekoitaPakkaan(poyta.getPoydallaOlevatKortit());
-                poyta.tyhjennaPoyta();
-                } 
+                if (poyta.getPoydallaOlevatKortit().size() > 0) {
+                    poyta.getPakka().sekoitaPakkaan(poyta.getPoydallaOlevatKortit());
+                    poyta.tyhjennaPoyta();
+                }
             }
             Kortti apuKortti = poyta.getPakka().otaEka();
             poyta.getTamanVuoronPelaaja().nostaKortti(apuKortti);
         }
         return false;
     }
-    
-//      vanha
-//    private boolean lopetavuoro() {
-//        if (poyta.getTamanVuoronPelaaja().getTallaVuorollaNostettu() == 3) {
-//            return true;
-//        } else {
-//            System.out.println("\nEt ole nostanut kolmea kertaa tällä vuorolla.");
-//            return false;
-//        }
-//    }
-    
-//      vanha
-//    private boolean voikoKortitPelata(ArrayList<Kortti> pelattavatKortit) {
-//        int summa = 0;
-//        for (Kortti kortti : pelattavatKortit) {
-//            summa += kortti.getArvo();
-//        }
-//        while (summa > 9) {
-//            summa -= 10;
-//        }
-//        System.out.println("summa: " + summa);
-//        return poyta.getPaallimmainen().getNumeroArvo() == summa;
-//    }
-    
-    
-    private boolean voikoKortitPelataGUI(ArrayList<Kortti> pelattavatKortit) {
+
+    public boolean voikoKortitPelata(ArrayList<Kortti> pelattavatKortit) {
         int summa = 0;
         for (Kortti kortti : pelattavatKortit) {
             summa += kortti.getArvo();
@@ -250,23 +176,29 @@ public class Vuoro {
         }
         return poyta.getPaallimmainen().getNumeroArvo() == summa;
     }
-    
-//      vanha
-//    private void tilanne() {
-//        System.out.println("");
-//        for (Pelaaja pelaaja : poyta.getPelaajat()) {
-//            System.out.println("Pelaaja " + pelaaja.getNimi() + ": "
-//                    + pelaaja.montaKorttiaKadessa() + " korttia kädessä.");
-//        }
-//    }
-    
-    public Poyta getPoyta(){
+
+    public Poyta getPoyta() {
         return poyta;
     }
-    
-    public int getVoitto(){
+
+    public int getVoitto() {
         return voitto;
     }
-
     
+    public ArrayList<Kortti> getPaallimaisenaPelattavat() {
+        return paallimaisenaPelattavat;
+    }
+
+    public void setPaallimaisenaPelattavat(ArrayList<Kortti> paallimaisenaPelattavat) {
+        this.paallimaisenaPelattavat = paallimaisenaPelattavat;
+    }
+    
+    public Kortti getPaallimmaisenaPelattava() {
+        return paallimmaisenaPelattava;
+    }
+
+    public void setPaallimmaisenaPelattava(Kortti paallimmaisenaPelattava) {
+        this.paallimmaisenaPelattava = paallimmaisenaPelattava;
+    }
+
 }
