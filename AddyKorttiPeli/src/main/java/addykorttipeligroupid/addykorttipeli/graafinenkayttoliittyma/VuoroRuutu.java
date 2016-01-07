@@ -3,11 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package graafinenkayttoliittyma;
+package addykorttipeligroupid.addykorttipeli.graafinenkayttoliittyma;
 
 import addykorttipeligroupid.addykorttipeli.Kortti;
 import addykorttipeligroupid.addykorttipeli.logiikka.MuuLogiikka;
-import java.awt.Component;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 import javax.swing.JList;
@@ -20,6 +19,9 @@ public class VuoroRuutu extends javax.swing.JFrame {
 
     private int voikoLopettaa = 3;
     private static VuoroRuutu vr;
+    private int tamanvuoronpelaaja;
+    private int ekapelaaja;
+    private int tokapelaaja;
 
     /**
      * Creates new form VuoroRuutu
@@ -51,9 +53,71 @@ public class VuoroRuutu extends javax.swing.JFrame {
         jOmatKortit.setVisibleRowCount(3);
         jScrollPane1.setViewportView(jOmatKortit);
     }
-    
-    public  void pakkaJaPoytaLoppu() {
+
+    public void pakkaJaPoytaLoppu() {
         jKortitLoppuPoydastaJaPakasta.setVisible(true);
+    }
+
+    public String getPaallimmainen() {
+        return MuuLogiikka.getVuoro().getPoyta().getPaallimmainen().toString();
+    }
+
+    public String getEkaPelaaja() {
+        for (int i = 0; i < MuuLogiikka.getVuoro().getPoyta().getPelaajat().size(); i++) {
+            if (MuuLogiikka.getVuoro().getPoyta().getTamanVuoronPelaaja().getNimi()
+                    .equals(MuuLogiikka.getVuoro().getPoyta().getPelaajat().get(i).getNimi())) {
+                tamanvuoronpelaaja = i;
+            }
+        }
+        for (int i = 0; i < MuuLogiikka.getVuoro().getPoyta().getPelaajat().size(); i++) {
+            if (MuuLogiikka.getVuoro().getPoyta().getTamanVuoronPelaaja().getNimi()
+                    .equals(MuuLogiikka.getVuoro().getPoyta().getPelaajat().get(i).getNimi())) {
+            } else {
+                String ekapelaajanpalautus = MuuLogiikka.getVuoro().getPoyta().getPelaajat().get(i).getNimi();
+                ekapelaajanpalautus += ": " + MuuLogiikka.getVuoro().getPoyta().getPelaajat().get(i).montaKorttiaKadessa();
+                ekapelaaja = i;
+                return ekapelaajanpalautus;
+            }
+        }
+
+        return "";
+    }
+
+    public String getTokaPelaaja() {
+        if (MuuLogiikka.getVuoro().getPoyta().getPelaajat().size() > 2) {
+            for (int i = 0; i < MuuLogiikka.getVuoro().getPoyta().getPelaajat().size(); i++) {
+                if (MuuLogiikka.getVuoro().getPoyta().getTamanVuoronPelaaja().getNimi()
+                        .equals(MuuLogiikka.getVuoro().getPoyta().getPelaajat().get(i).getNimi())
+                        || MuuLogiikka.getVuoro().getPoyta().getPelaajat().get(i).getNimi()
+                        .equals(MuuLogiikka.getVuoro().getPoyta().getPelaajat().get(ekapelaaja).getNimi())) {
+                } else {
+                    String tokapelaajanpalautus = MuuLogiikka.getVuoro().getPoyta().getPelaajat().get(i).getNimi();
+                    tokapelaajanpalautus += ": " + MuuLogiikka.getVuoro().getPoyta().getPelaajat().get(i).montaKorttiaKadessa();
+                    tokapelaaja = i;
+                    return tokapelaajanpalautus;
+                }
+            }
+        }
+        return "";
+    }
+
+    public String getKolmasPelaaja() {
+        if (MuuLogiikka.getVuoro().getPoyta().getPelaajat().size() > 3) {
+            for (int i = 0; i < MuuLogiikka.getVuoro().getPoyta().getPelaajat().size(); i++) {
+                if (MuuLogiikka.getVuoro().getPoyta().getTamanVuoronPelaaja().getNimi()
+                        .equals(MuuLogiikka.getVuoro().getPoyta().getPelaajat().get(i).getNimi())
+                        || MuuLogiikka.getVuoro().getPoyta().getPelaajat().get(i).getNimi()
+                        .equals(MuuLogiikka.getVuoro().getPoyta().getPelaajat().get(ekapelaaja).getNimi())
+                        || MuuLogiikka.getVuoro().getPoyta().getPelaajat().get(i).getNimi()
+                        .equals(MuuLogiikka.getVuoro().getPoyta().getPelaajat().get(tokapelaaja).getNimi())) {
+                } else {
+                    String kolmaspelaajanpalautus = MuuLogiikka.getVuoro().getPoyta().getPelaajat().get(i).getNimi();
+                    kolmaspelaajanpalautus += ": " + MuuLogiikka.getVuoro().getPoyta().getPelaajat().get(i).montaKorttiaKadessa();
+                    return kolmaspelaajanpalautus;
+                }
+            }
+        }
+        return "";
     }
 
     /**
@@ -78,9 +142,9 @@ public class VuoroRuutu extends javax.swing.JFrame {
         jNostitJoKolme = new javax.swing.JLabel();
         jEtOleNostanut3 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jVastustaja2 = new javax.swing.JLabel();
-        jVastustaja3 = new javax.swing.JLabel();
+        jVastustaja1Kortit = new javax.swing.JLabel();
+        jVastustaja2kortit = new javax.swing.JLabel();
+        jVastustaja3kortit = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jOmatKortit = new javax.swing.JList<>();
@@ -98,6 +162,11 @@ public class VuoroRuutu extends javax.swing.JFrame {
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         jPelaa.setText("Pelaa");
+        jPelaa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jPelaaActionPerformed(evt);
+            }
+        });
 
         jNostaKortti.setText("Nosta Kortti");
         jNostaKortti.addActionListener(new java.awt.event.ActionListener() {
@@ -189,11 +258,11 @@ public class VuoroRuutu extends javax.swing.JFrame {
 
         jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        jLabel1.setText("vastustaja1: 5 korttia");
+        jVastustaja1Kortit.setText(getEkaPelaaja());
 
-        jVastustaja2.setText("vastustaja2: 8 korttia");
+        jVastustaja2kortit.setText(getTokaPelaaja());
 
-        jVastustaja3.setText("vastustaja3: 2 korttia");
+        jVastustaja3kortit.setText(getKolmasPelaaja());
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -201,11 +270,11 @@ public class VuoroRuutu extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
-                .addGap(78, 78, 78)
-                .addComponent(jVastustaja2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jVastustaja3)
+                .addComponent(jVastustaja1Kortit)
+                .addGap(162, 162, 162)
+                .addComponent(jVastustaja2kortit)
+                .addGap(162, 162, 162)
+                .addComponent(jVastustaja3kortit)
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -213,9 +282,9 @@ public class VuoroRuutu extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
-                    .addComponent(jVastustaja2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jVastustaja3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jVastustaja1Kortit, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
+                    .addComponent(jVastustaja2kortit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jVastustaja3kortit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -247,9 +316,9 @@ public class VuoroRuutu extends javax.swing.JFrame {
 
         jPanel4.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        jLabel2.setText("Viimevuorolla pelattu:");
+        jLabel2.setText("Päällimäinen kortti:");
 
-        jKortti.setText("jKortti");
+        jKortti.setText(getPaallimmainen());
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -332,7 +401,7 @@ public class VuoroRuutu extends javax.swing.JFrame {
 
     private void jNostaKorttiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jNostaKorttiActionPerformed
         if (MuuLogiikka.getVuoro().getPoyta().getPakka().montaPakassa() < 1
-            && MuuLogiikka.getVuoro().getPoyta().getPoydallaOlevatKortit().size() < 1) {
+                && MuuLogiikka.getVuoro().getPoyta().getPoydallaOlevatKortit().size() < 1) {
             pakkaJaPoytaLoppu();
         } else {
             if (MuuLogiikka.getVuoro().nostaKorttiGUI()) {
@@ -376,6 +445,10 @@ public class VuoroRuutu extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jLuovutaOKActionPerformed
 
+    private void jPelaaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPelaaActionPerformed
+        
+    }//GEN-LAST:event_jPelaaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -414,15 +487,12 @@ public class VuoroRuutu extends javax.swing.JFrame {
         });
     }
 
-    
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.Box.Filler filler1;
     private javax.swing.JLabel jEtOleNostanut3;
     private javax.swing.JLabel jKortitLoppuPoydastaJaPakasta;
     private javax.swing.JLabel jKortti;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JButton jLopetaVuoro;
     private javax.swing.JButton jLuovuta;
@@ -439,7 +509,8 @@ public class VuoroRuutu extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JToggleButton jToggleButton2;
-    private javax.swing.JLabel jVastustaja2;
-    private javax.swing.JLabel jVastustaja3;
+    private javax.swing.JLabel jVastustaja1Kortit;
+    private javax.swing.JLabel jVastustaja2kortit;
+    private javax.swing.JLabel jVastustaja3kortit;
     // End of variables declaration//GEN-END:variables
 }

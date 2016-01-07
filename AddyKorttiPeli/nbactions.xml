@@ -31,7 +31,7 @@
                 <goal>org.codehaus.mojo:exec-maven-plugin:1.2.1:exec</goal>
             </goals>
             <properties>
-                <exec.args>-classpath %classpath graafinenkayttoliittyma.AloitusRuutu</exec.args>
+                <exec.args>-classpath %classpath addykorttipeligroupid.addykorttipeli.graafinenkayttoliittyma.AloitusRuutu</exec.args>
                 <exec.executable>java</exec.executable>
             </properties>
         </action>

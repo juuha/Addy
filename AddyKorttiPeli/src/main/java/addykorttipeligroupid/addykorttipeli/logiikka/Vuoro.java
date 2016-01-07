@@ -3,7 +3,7 @@ package addykorttipeligroupid.addykorttipeli.logiikka;
 import addykorttipeligroupid.addykorttipeli.Kortti;
 import addykorttipeligroupid.addykorttipeli.Pelaaja;
 import addykorttipeligroupid.addykorttipeli.Poyta;
-import graafinenkayttoliittyma.AloitaVuoroRuutu;
+import addykorttipeligroupid.addykorttipeli.graafinenkayttoliittyma.AloitaVuoroRuutu;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Scanner;
@@ -113,6 +113,10 @@ public class Vuoro {
     public void valmistelutGUI() {
         voitto = 0;
         poyta.getTamanVuoronPelaaja().nollaaKorttienNostot();
+        if (poyta.onkoEkaVuoro()){
+            poyta.setPaallimmainen(poyta.getPakka().otaEka());
+            poyta.laitaPoydallaOleviinKortteihin(poyta.getPaallimmainen());
+        }
     }
 
 //      vanha

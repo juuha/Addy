@@ -147,6 +147,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Pelaa"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jPelaaActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="jNostaKortti">
           <Properties>
@@ -243,11 +246,11 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="78" max="-2" attributes="0"/>
-                  <Component id="jVastustaja2" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="32767" attributes="0"/>
-                  <Component id="jVastustaja3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jVastustaja1Kortit" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="162" max="-2" attributes="0"/>
+                  <Component id="jVastustaja2kortit" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="162" max="-2" attributes="0"/>
+                  <Component id="jVastustaja3kortit" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -257,9 +260,9 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jLabel1" pref="35" max="32767" attributes="0"/>
-                      <Component id="jVastustaja2" alignment="0" max="32767" attributes="0"/>
-                      <Component id="jVastustaja3" alignment="0" max="32767" attributes="0"/>
+                      <Component id="jVastustaja1Kortit" pref="35" max="32767" attributes="0"/>
+                      <Component id="jVastustaja2kortit" alignment="0" max="32767" attributes="0"/>
+                      <Component id="jVastustaja3kortit" alignment="0" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -267,19 +270,25 @@
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JLabel" name="jLabel1">
+        <Component class="javax.swing.JLabel" name="jVastustaja1Kortit">
           <Properties>
-            <Property name="text" type="java.lang.String" value="vastustaja1: 5 korttia"/>
+            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="getEkaPelaaja()" type="code"/>
+            </Property>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="jVastustaja2">
+        <Component class="javax.swing.JLabel" name="jVastustaja2kortit">
           <Properties>
-            <Property name="text" type="java.lang.String" value="vastustaja2: 8 korttia"/>
+            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="getTokaPelaaja()" type="code"/>
+            </Property>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="jVastustaja3">
+        <Component class="javax.swing.JLabel" name="jVastustaja3kortit">
           <Properties>
-            <Property name="text" type="java.lang.String" value="vastustaja3: 2 korttia"/>
+            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="getKolmasPelaaja()" type="code"/>
+            </Property>
           </Properties>
         </Component>
       </SubComponents>
@@ -377,12 +386,14 @@
       <SubComponents>
         <Component class="javax.swing.JLabel" name="jLabel2">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Viimevuorolla pelattu:"/>
+            <Property name="text" type="java.lang.String" value="P&#xe4;&#xe4;llim&#xe4;inen kortti:"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jKortti">
           <Properties>
-            <Property name="text" type="java.lang.String" value="jKortti"/>
+            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="getPaallimmainen()" type="code"/>
+            </Property>
           </Properties>
         </Component>
       </SubComponents>

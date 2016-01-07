@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package graafinenkayttoliittyma;
+package addykorttipeligroupid.addykorttipeli.graafinenkayttoliittyma;
 
 import addykorttipeligroupid.addykorttipeli.Pakka;
 import addykorttipeligroupid.addykorttipeli.Poyta;
