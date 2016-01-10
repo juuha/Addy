@@ -16,19 +16,9 @@ public class MuuLogiikka {
     private static int odota = 0;
     private static Vuoro vuoro;
     
-
-
-
     /**
-     * tulostaa pelin ohjeet, ei valmis
+     *  alustaa vuoro olion ja tarkistaa onko eka vuoro. kutsuu vuoro luokan vuoro metodia.
      */
-    public static void tulostaOhjeet() {
-        System.out.println("Ohjeet: (ei valmis, valmiissa avaa tiedoston, jossa ohjeet)");
-    }
-
-
-
-    
     public static void pelaa() {
         vuoro = new Vuoro(poyta);
         if (vuoro.getPoyta().onkoEkaVuoro()){
@@ -40,7 +30,7 @@ public class MuuLogiikka {
 
 
     /**
-     *
+     * luo parametrin verran nimenvalinta ruutuja
      * @param luku
      */
     public static void luoPelaajat(int luku) {
@@ -50,20 +40,22 @@ public class MuuLogiikka {
         }
     }
 
-    
+    /**
+     *  luo voittoruutu olion
+     */
     public static void voitto(){
         VoittoRuutu vr = new VoittoRuutu();
     }
 
     /**
-     *
+     *  sulkee ohjelman
      */
     public static void lopeta() {
         System.exit(0);
     }
     
     /**
-     *
+     * Luo pelaajat kyseisellä parametrin nimellä.
      * @param nimi
      */
     public static void luoPelaajaNimelta(String nimi){
@@ -71,23 +63,28 @@ public class MuuLogiikka {
     }
     
     
-    
     public static Poyta getPoyta(){
         return poyta;
     }
+    
     
     public static int getOdota(){
         return odota;
     }
     
+    
     public static void odota(){
         odota--;
     }
+    
     
     public static Vuoro getVuoro(){
         return vuoro;
     }
     
+    /**
+     *  luo uuden pöydän vanhan tilalle.
+     */
     public static void nollaaPeli(){
         poyta = new Poyta(new Pakka());
     }

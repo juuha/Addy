@@ -12,7 +12,8 @@ import javax.swing.DefaultListModel;
 import javax.swing.JList;
 
 /**
- *
+ * Tämä luokka luo Ruudun, jonka avulla voi valita vuorolla pelatuista korteista
+ * päällimmäisimmän.
  * @author ritakosk
  */
 public class MikaKorteistaPaallimaiseksiRuutu extends javax.swing.JFrame {

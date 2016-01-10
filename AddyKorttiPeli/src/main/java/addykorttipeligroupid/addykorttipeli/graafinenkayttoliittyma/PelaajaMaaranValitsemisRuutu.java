@@ -8,7 +8,8 @@ package addykorttipeligroupid.addykorttipeli.graafinenkayttoliittyma;
 import addykorttipeligroupid.addykorttipeli.logiikka.MuuLogiikka;
 
 /**
- *
+ * Tämä luokka luo ruudun, jonka avulla voi valita peliin osallistuvien pelaajien
+ * määrän (2-4).
  * @author ritakosk
  */
 public class PelaajaMaaranValitsemisRuutu extends javax.swing.JFrame {

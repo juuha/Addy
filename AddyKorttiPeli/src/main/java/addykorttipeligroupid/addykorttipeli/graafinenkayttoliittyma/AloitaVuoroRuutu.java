@@ -8,7 +8,8 @@ package addykorttipeligroupid.addykorttipeli.graafinenkayttoliittyma;
 import addykorttipeligroupid.addykorttipeli.logiikka.MuuLogiikka;
 
 /**
- *
+ * Tämä luokka luo ruudun, joka estää korttien paljastumisen muille pelaajille ja
+ * ilmestyy aina ennen vuoron alkua.
  * @author ritakosk
  */
 public class AloitaVuoroRuutu extends javax.swing.JFrame {

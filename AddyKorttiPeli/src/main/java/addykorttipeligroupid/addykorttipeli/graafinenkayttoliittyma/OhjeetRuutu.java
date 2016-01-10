@@ -9,7 +9,7 @@ import addykorttipeligroupid.addykorttipeli.logiikka.Lukija;
 import java.util.ArrayList;
 
 /**
- *
+ * Tämä luokka luo ruudun, josta pelaaja voi lukea ohjeet ja palata aloitusruutuun.
  * @author ritakosk
  */
 public class OhjeetRuutu extends javax.swing.JFrame {

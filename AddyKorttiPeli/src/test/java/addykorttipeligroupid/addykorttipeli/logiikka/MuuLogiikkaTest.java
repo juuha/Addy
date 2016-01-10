@@ -5,20 +5,23 @@
  */
 package addykorttipeligroupid.addykorttipeli.logiikka;
 
+import addykorttipeligroupid.addykorttipeli.Pakka;
+import addykorttipeligroupid.addykorttipeli.Pelaaja;
 import addykorttipeligroupid.addykorttipeli.Poyta;
-import java.util.Scanner;
 import org.junit.After;
 import org.junit.AfterClass;
+import static org.junit.Assert.assertEquals;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import static org.junit.Assert.*;
 
 /**
  *
  * @author ritakosk
  */
 public class MuuLogiikkaTest {
+    
+    Poyta poyta;
     
     public MuuLogiikkaTest() {
     }
@@ -33,32 +36,23 @@ public class MuuLogiikkaTest {
     
     @Before
     public void setUp() {
+        poyta = new Poyta(new Pakka());
     }
     
     @After
     public void tearDown() {
     }
 
-    /**
-     * Test of tulostaOhjeet method, of class MuuLogiikka.
-     */
-    @Test
-    public void testTulostaOhjeet() {
-        System.out.println("tulostaOhjeet");
-        MuuLogiikka.tulostaOhjeet();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
+
 
     /**
      * Test of pelaaGUI method, of class MuuLogiikka.
      */
     @Test
     public void testPelaa() {
-        System.out.println("pelaaGUI");
+        MuuLogiikka.getPoyta().tyhjennaPoyta();
         MuuLogiikka.pelaa();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertEquals(false, MuuLogiikka.getVuoro().getPoyta().onkoEkaVuoro());
     }
 
     /**
@@ -66,45 +60,20 @@ public class MuuLogiikkaTest {
      */
     @Test
     public void testLuoPelaajat() {
-        System.out.println("luoPelaajatGUI");
-        int luku = 0;
-        MuuLogiikka.luoPelaajat(luku);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        MuuLogiikka.luoPelaajat(2);
+        assertEquals(2, MuuLogiikka.getPoyta().getPelaajat().size());
     }
 
-    /**
-     * Test of voittoGUI method, of class MuuLogiikka.
-     */
-    @Test
-    public void testVoitto() {
-        System.out.println("voittoGUI");
-        MuuLogiikka.voitto();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
+  
 
-    /**
-     * Test of lopeta method, of class MuuLogiikka.
-     */
-    @Test
-    public void testLopeta() {
-        System.out.println("lopeta");
-        MuuLogiikka.lopeta();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
+    
     /**
      * Test of luoPelaajaNimelta method, of class MuuLogiikka.
      */
     @Test
     public void testLuoPelaajaNimelta() {
-        System.out.println("luoPelaajaNimelta");
-        String nimi = "";
-        MuuLogiikka.luoPelaajaNimelta(nimi);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        MuuLogiikka.luoPelaajaNimelta("moi");
+        assertEquals("moi", MuuLogiikka.getPoyta().getPelaajat().get(0).getNimi());
     }
 
     /**
@@ -112,12 +81,7 @@ public class MuuLogiikkaTest {
      */
     @Test
     public void testGetPoyta() {
-        System.out.println("getPoyta");
-        Poyta expResult = null;
-        Poyta result = MuuLogiikka.getPoyta();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertEquals(0, MuuLogiikka.getPoyta().getPelaajat().size());
     }
 
     
@@ -127,12 +91,16 @@ public class MuuLogiikkaTest {
      */
     @Test
     public void testGetOdota() {
-        System.out.println("getOdota");
-        int expResult = 0;
-        int result = MuuLogiikka.getOdota();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertEquals(0, MuuLogiikka.getOdota());
+    }
+    
+    /**
+     * Test of getOdota method, of class MuuLogiikka.
+     */
+    @Test
+    public void testGetOdota2() {
+        MuuLogiikka.luoPelaajat(2);
+        assertEquals(2, MuuLogiikka.getOdota());
     }
 
     /**
@@ -140,10 +108,10 @@ public class MuuLogiikkaTest {
      */
     @Test
     public void testOdota() {
-        System.out.println("odota");
+        MuuLogiikka.luoPelaajat(2);
         MuuLogiikka.odota();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertEquals(1, MuuLogiikka.getOdota());
+        
     }
 
     /**
@@ -151,12 +119,11 @@ public class MuuLogiikkaTest {
      */
     @Test
     public void testGetVuoro() {
-        System.out.println("getVuoro");
-        Vuoro expResult = null;
-        Vuoro result = MuuLogiikka.getVuoro();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        MuuLogiikka.getPoyta().lisaaPelaaja(new Pelaaja("moro"));
+        MuuLogiikka.getPoyta().lisaaPelaaja(new Pelaaja("joro"));
+        MuuLogiikka.pelaa();
+        assertEquals("moro", MuuLogiikka.getVuoro().getPoyta().getTamanVuoronPelaaja().getNimi());
+        
     }
 
     /**
@@ -164,10 +131,9 @@ public class MuuLogiikkaTest {
      */
     @Test
     public void testNollaaPeli() {
-        System.out.println("nollaaPeli");
+        MuuLogiikka.getPoyta().lisaaPelaaja(new Pelaaja("moi"));
         MuuLogiikka.nollaaPeli();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertEquals(0, MuuLogiikka.getPoyta().getPelaajat().size());
     }
     
 }

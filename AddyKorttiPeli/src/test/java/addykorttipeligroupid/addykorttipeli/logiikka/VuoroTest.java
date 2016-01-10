@@ -5,7 +5,6 @@ import addykorttipeligroupid.addykorttipeli.Kortti;
 import addykorttipeligroupid.addykorttipeli.Pakka;
 import addykorttipeligroupid.addykorttipeli.Pelaaja;
 import addykorttipeligroupid.addykorttipeli.Poyta;
-import java.util.ArrayList;
 import java.util.Scanner;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -107,22 +106,7 @@ public class VuoroTest {
         assertEquals(true, vuoro.nostaKortti());
     }
     
-//    @Test  ongelma
-//    public void testNostaKorttiGUI2() {
-//        vuoro.aloitaPeli();
-//        int apu = vuoro.getPoyta().getPakka().montaPakassa();
-//        for (int i = 0; i < apu; i++) {
-//            vuoro.getPoyta().getPakka().otaEka();
-//        }
-//        
-//        vuoro.getPoyta().laitaPoydallaOleviinKortteihin(new Kortti("jep", 5));
-//        vuoro.getPoyta().laitaPoydallaOleviinKortteihin(new Kortti("jep", 7));
-//        vuoro.getPoyta().laitaPoydallaOleviinKortteihin(new Kortti("jep", 8));
-//        vuoro.nostaKorttiGUI();
-//        
-//        assertEquals(0, vuoro.getPoyta().getPoydallaOlevatKortit().size());
-//        
-//    }
+    
     
     @Test
     public void testNostaKorttiGUI3() {

@@ -13,7 +13,7 @@ import javax.swing.DefaultListModel;
 import javax.swing.JList;
 
 /**
- *
+ * Tämä luokka luo ruudun, joka kuvastaa mitä pelin vuoron aikana voi tehdä.
  * @author ritakosk
  */
 public class VuoroRuutu extends javax.swing.JFrame {
@@ -87,7 +87,6 @@ public class VuoroRuutu extends javax.swing.JFrame {
                 return ekapelaajanpalautus;
             }
         }
-
         return "";
     }
 
@@ -128,6 +127,9 @@ public class VuoroRuutu extends javax.swing.JFrame {
         return "";
     }
 
+    /**
+     *  tämä metodi lopettaa kyseisen vuoron ja suorittaa vuoron lopussa tehdyt toiminnot.
+     */
     public void lopetaVuoro() {
         MuuLogiikka.getVuoro().jalkivalmistelut();
         if (MuuLogiikka.getVuoro().getVoitto() == 1) {
@@ -137,6 +139,15 @@ public class VuoroRuutu extends javax.swing.JFrame {
         } else {
             this.setVisible(false);
             MuuLogiikka.getVuoro().vuoro();
+        }
+    }
+    
+    private void tekstiKorteiksi() throws NumberFormatException {
+        pelattavatKortit = new ArrayList();
+        List<String> pelattavatKortitTekstina = jOmatKortit.getSelectedValuesList();
+        for (String kortti : pelattavatKortitTekstina) {
+            String[] maaJaArvo = kortti.split(" ");
+            pelattavatKortit.add(new Kortti(maaJaArvo[0], Integer.parseInt(maaJaArvo[1])));
         }
     }
 
@@ -439,6 +450,8 @@ public class VuoroRuutu extends javax.swing.JFrame {
             MuuLogiikka.getVuoro().vuoro();
 
         }
+        
+        
     }//GEN-LAST:event_jLuovutaOKActionPerformed
 
     private void jLuovutaPeruutaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jLuovutaPeruutaActionPerformed
@@ -506,14 +519,7 @@ public class VuoroRuutu extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jPelaaActionPerformed
 
-    private void tekstiKorteiksi() throws NumberFormatException {
-        pelattavatKortit = new ArrayList();
-        List<String> pelattavatKortitTekstina = jOmatKortit.getSelectedValuesList();
-        for (String kortti : pelattavatKortitTekstina) {
-            String[] maaJaArvo = kortti.split(" ");
-            pelattavatKortit.add(new Kortti(maaJaArvo[0], Integer.parseInt(maaJaArvo[1])));
-        }
-    }
+    
 
     
 

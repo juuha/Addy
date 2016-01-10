@@ -9,7 +9,8 @@ import addykorttipeligroupid.addykorttipeli.Pelaaja;
 import addykorttipeligroupid.addykorttipeli.logiikka.MuuLogiikka;
 
 /**
- *
+ * Tämä luokka luo ruudun, jonka avulla pelaaja voi antaa nimensä, josta voi pelin
+ * aikana tunnistaa itsensä.
  * @author ritakosk
  */
 public class NimenValinta extends javax.swing.JFrame {

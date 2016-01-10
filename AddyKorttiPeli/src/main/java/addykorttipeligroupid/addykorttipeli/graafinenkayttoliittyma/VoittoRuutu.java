@@ -8,7 +8,7 @@ package addykorttipeligroupid.addykorttipeli.graafinenkayttoliittyma;
 import addykorttipeligroupid.addykorttipeli.logiikka.MuuLogiikka;
 
 /**
- *
+ * Tämä luokka luo ruudun, josta näkee pelin loputtua, kuka pelaajista voitti pelin.
  * @author ritakosk
  */
 public class VoittoRuutu extends javax.swing.JFrame {
@@ -24,6 +24,12 @@ public class VoittoRuutu extends javax.swing.JFrame {
     private void aloitus() {
         this.setLocationRelativeTo(null);
         this.setVisible(true);
+    }
+    
+    private String getVoittoTexti() {
+        String voittoTeksti = MuuLogiikka.getVuoro().getPoyta().getTamanVuoronPelaaja().getNimi();
+        voittoTeksti += " voitti pelin!";
+        return voittoTeksti;
     }
 
     /**
@@ -94,12 +100,6 @@ public class VoittoRuutu extends javax.swing.JFrame {
         AloitusRuutu.main(null);
         this.setVisible(false);
     }//GEN-LAST:event_jPalaaAloitusRuutuunActionPerformed
-
-    private String getVoittoTexti() {
-        String voittoTeksti = MuuLogiikka.getVuoro().getPoyta().getTamanVuoronPelaaja().getNimi();
-        voittoTeksti += " voitti pelin!";
-        return voittoTeksti;
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jPalaaAloitusRuutuun;

@@ -8,7 +8,8 @@ package addykorttipeligroupid.addykorttipeli.graafinenkayttoliittyma;
 import addykorttipeligroupid.addykorttipeli.logiikka.MuuLogiikka;
 
 /**
- *
+ * Tämä luokka luo ruuudun, josta voi aloittaa pelin, lukea ohjeet tai lopettaa ohjelman.
+ * Tämä ruutu toimii myös ohjelman main-luokkana.
  * @author ritakosk
  */
 public class AloitusRuutu extends javax.swing.JFrame {
