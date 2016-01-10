@@ -19,7 +19,7 @@ public class Lukija {
      *
      */
     public Lukija() {
-        ohje = new File("/home/ritakosk/Addy/AddyKorttiPeli/Ohjeet");
+        ohje = new File("./Ohjeet");
         alustus();
     }
     
