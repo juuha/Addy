@@ -5,26 +5,41 @@
  */
 package addykorttipeligroupid.addykorttipeli.graafinenkayttoliittyma;
 
-import addykorttipeligroupid.addykorttipeli.Pelaaja;
-import addykorttipeligroupid.addykorttipeli.logiikka.MuuLogiikka;
+import addykorttipeligroupid.addykorttipeli.logiikka.Lukija;
+import java.util.ArrayList;
 
 /**
  *
  * @author ritakosk
  */
-public class NimenValinta extends javax.swing.JFrame {
+public class OhjeetRuutu extends javax.swing.JFrame {
 
     /**
-     * Creates new form NimenValinta
+     * Creates new form OhjeetRuutu
      */
-    public NimenValinta() {
+    public OhjeetRuutu() {
         initComponents();
         aloitus();
     }
-
-    private void aloitus() {
+    
+    private void aloitus(){
         this.setLocationRelativeTo(null);
         this.setVisible(true);
+    }
+    
+    private void setTeksti() {
+        Lukija lukija = new Lukija();
+        ArrayList<String> ohjeetListana = lukija.haeOhjeet();
+        String ohjeet = "<html>";
+        for (int i = 0; i < ohjeetListana.size(); i++) {
+            ohjeet += ohjeetListana.get(i);
+            if (i < ohjeetListana.size()-1){
+                ohjeet += "<br>";
+            }
+        }
+        ohjeet += "</html>";
+        jOhjeet.setText(ohjeet);
+        
     }
 
     /**
@@ -37,18 +52,24 @@ public class NimenValinta extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jNimi = new javax.swing.JTextField();
-        jOk = new javax.swing.JButton();
+        jOhjeet = new javax.swing.JLabel();
+        jPalaa = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMaximumSize(new java.awt.Dimension(440, 450));
+        setMinimumSize(new java.awt.Dimension(440, 450));
 
-        jLabel1.setText("Anna nimi:");
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Ohjeet"));
 
-        jOk.setText("Ok");
-        jOk.addActionListener(new java.awt.event.ActionListener() {
+        jOhjeet.setText("jLabel1");
+        jOhjeet.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        jOhjeet.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+        setTeksti();
+
+        jPalaa.setText("Palaa Aloitusruutuun");
+        jPalaa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jOkActionPerformed(evt);
+                jPalaaActionPerformed(evt);
             }
         });
 
@@ -57,22 +78,21 @@ public class NimenValinta extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jNimi, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jOk, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jOhjeet, javax.swing.GroupLayout.PREFERRED_SIZE, 440, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jPalaa)))
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jNimi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jOk))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jOhjeet, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPalaa))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -95,25 +115,16 @@ public class NimenValinta extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jOkActionPerformed
-        if (jNimi.getText() != null) {
-            String nimi = jNimi.getText();
-            MuuLogiikka.getPoyta().lisaaPelaaja(new Pelaaja(nimi));
-            MuuLogiikka.odota();
-            this.setVisible(false);
-            if (MuuLogiikka.getOdota() == 0) {
-                MuuLogiikka.pelaa();
-            }
-        }
-    }//GEN-LAST:event_jOkActionPerformed
+    private void jPalaaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPalaaActionPerformed
+        this.setVisible(false);
+        AloitusRuutu.main(null);
+    }//GEN-LAST:event_jPalaaActionPerformed
 
     
 
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JTextField jNimi;
-    private javax.swing.JButton jOk;
+    private javax.swing.JLabel jOhjeet;
+    private javax.swing.JButton jPalaa;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }

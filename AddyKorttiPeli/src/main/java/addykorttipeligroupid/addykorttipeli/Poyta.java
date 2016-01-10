@@ -10,13 +10,13 @@ import java.util.ArrayList;
 public class Poyta {
     
     private Kortti paallimmainen;
-    private ArrayList<Kortti> poydallaOlevatKortit;
-    private ArrayList<Pelaaja> pelaajat;
+    private final ArrayList<Kortti> poydallaOlevatKortit;
+    private final ArrayList<Pelaaja> pelaajat;
     private Pelaaja tamanVuoronPelaaja;
     private Pelaaja seuraavanVuoronPelaaja;
     private boolean pelinEkaVuoro;
     private String viimeVuorollaPelattu = "";
-    private Pakka pakka;
+    private final Pakka pakka;
     
     /**
      *

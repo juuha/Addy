@@ -46,13 +46,13 @@ public class MuuLogiikka {
     public static void luoPelaajat(int luku) {
         odota = luku;
         for (int i = 0; i < luku; i++) {
-            NimenValinta.main(null);
+            NimenValinta nm = new NimenValinta();
         }
     }
 
     
     public static void voitto(){
-        VoittoRuutu.main(null);
+        VoittoRuutu vr = new VoittoRuutu();
     }
 
     /**

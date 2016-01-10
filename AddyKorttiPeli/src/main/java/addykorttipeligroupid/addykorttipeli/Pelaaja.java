@@ -8,8 +8,8 @@ import java.util.ArrayList;
  */
 public class Pelaaja {
 
-    private String nimi;
-    private ArrayList<Kortti> kasi;
+    private final String nimi;
+    private final ArrayList<Kortti> kasi;
     private int tallaVuorollaNostettu;
 
     /**

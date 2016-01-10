@@ -19,18 +19,24 @@ import javax.swing.JList;
 public class VuoroRuutu extends javax.swing.JFrame {
 
     private int voikoLopettaa = 3;
-    private static VuoroRuutu vr;
     private int tamanvuoronpelaaja;
     private int ekapelaaja;
     private int tokapelaaja;
-    
+    ArrayList<Kortti> pelattavatKortit = new ArrayList();
 
     /**
      * Creates new form VuoroRuutu
      */
     public VuoroRuutu() {
+        
         initComponents();
         voikoLopettaa = 3;
+        aloitus();
+    }
+    
+    private void aloitus(){
+        this.setLocationRelativeTo(null);
+        this.setVisible(true);
     }
 
     private void joKolmeNostettu() {
@@ -121,17 +127,17 @@ public class VuoroRuutu extends javax.swing.JFrame {
         }
         return "";
     }
-    
-    public void lopetaVuoro(){
+
+    public void lopetaVuoro() {
         MuuLogiikka.getVuoro().jalkivalmistelut();
-            if (MuuLogiikka.getVuoro().getVoitto() == 1) {
-                MuuLogiikka.voitto();
-                MuuLogiikka.nollaaPeli();
-                vr.setVisible(false);
-            } else {
-                vr.setVisible(false);
-                MuuLogiikka.getVuoro().vuoro();
-            }
+        if (MuuLogiikka.getVuoro().getVoitto() == 1) {
+            MuuLogiikka.voitto();
+            MuuLogiikka.nollaaPeli();
+            this.setVisible(false);
+        } else {
+            this.setVisible(false);
+            MuuLogiikka.getVuoro().vuoro();
+        }
     }
 
     /**
@@ -174,6 +180,8 @@ public class VuoroRuutu extends javax.swing.JFrame {
         jToggleButton2.setText("jToggleButton2");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBounds(new java.awt.Rectangle(0, 0, 560, 550));
+        setMinimumSize(new java.awt.Dimension(650, 420));
 
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
@@ -233,15 +241,14 @@ public class VuoroRuutu extends javax.swing.JFrame {
                 .addComponent(jNostaKortti, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLopetaVuoro, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(filler1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLuovutaOK)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLuovutaPeruuta)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLuovutaPeruuta)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLuovuta))
-                    .addComponent(jLuovutaOK))
+                .addComponent(jLuovuta)
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -250,20 +257,19 @@ public class VuoroRuutu extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLopetaVuoro, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPelaa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jNostaKortti, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addContainerGap())
-                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(filler1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLuovuta)
-                            .addComponent(jLuovutaPeruuta))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLuovutaOK))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jPelaa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jNostaKortti, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLuovutaPeruuta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLuovutaOK, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLuovuta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jLopetaVuoro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addContainerGap())))
         );
 
         jNostitJoKolme.setText("Nostit jo 3 korttia tällä vuorolla, et voi nostaa lisää kortteja.");
@@ -360,7 +366,7 @@ public class VuoroRuutu extends javax.swing.JFrame {
         jKortitLoppuPoydastaJaPakasta.setText("Pakka ja pelatut kortit ovat loppu, pelaa kortteja, lopeta vuoro tai luovuta.");
         jKortitLoppuPoydastaJaPakasta.setVisible(false);
 
-        jEiValittujaKortteja.setText("Et ole valinnut yhtään korttia. Valitse yhdestä kolmeen korttia.");
+        jEiValittujaKortteja.setText("Valitse yhdestä kolmeen korttia.");
         jEiValittujaKortteja.setVisible(false);
 
         jVaaraSumma.setText("Valitsemiesi korttien summa ei ole sama kuin päällimmäisen kortin arvo.");
@@ -396,9 +402,9 @@ public class VuoroRuutu extends javax.swing.JFrame {
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jVaaraSumma)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jVaaraSumma)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jEiValittujaKortteja)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jKortitLoppuPoydastaJaPakasta)
@@ -414,12 +420,26 @@ public class VuoroRuutu extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jLuovutaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jLuovutaActionPerformed
-        jLuovuta.setVisible(false);
-        jLuovutaOK.setVisible(true);
-        jLuovutaPeruuta.setVisible(true);
+    private void jLuovutaOKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jLuovutaOKActionPerformed
+        jEiValittujaKortteja.setVisible(false);
+        jVaaraSumma.setVisible(false);
+        MuuLogiikka.getVuoro().getPoyta().poistaPelaaja(MuuLogiikka.getVuoro()
+            .getPoyta().getTamanVuoronPelaaja());
+        if (MuuLogiikka.getVuoro().getPoyta().getPelaajat().size() == 1) {
+            MuuLogiikka.getVuoro().getPoyta().setTamanVuoronPelaaja();
+            this.setVisible(false);
+            MuuLogiikka.voitto();
+            MuuLogiikka.nollaaPeli();
+        } else {
+            this.setVisible(false);
+            for (Kortti kortti : MuuLogiikka.getVuoro().getPoyta().getTamanVuoronPelaaja().getKadessaOlevatKortit()) {
+                MuuLogiikka.getVuoro().getPoyta().laitaPoydallaOleviinKortteihin(kortti);
+            }
+            MuuLogiikka.getVuoro().jalkivalmistelut();
+            MuuLogiikka.getVuoro().vuoro();
 
-    }//GEN-LAST:event_jLuovutaActionPerformed
+        }
+    }//GEN-LAST:event_jLuovutaOKActionPerformed
 
     private void jLuovutaPeruutaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jLuovutaPeruutaActionPerformed
         jLuovuta.setVisible(true);
@@ -427,11 +447,27 @@ public class VuoroRuutu extends javax.swing.JFrame {
         jLuovutaPeruuta.setVisible(false);
     }//GEN-LAST:event_jLuovutaPeruutaActionPerformed
 
+    private void jLuovutaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jLuovutaActionPerformed
+        jLuovuta.setVisible(false);
+        jLuovutaOK.setVisible(true);
+        jLuovutaPeruuta.setVisible(true);
+    }//GEN-LAST:event_jLuovutaActionPerformed
+
+    private void jLopetaVuoroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jLopetaVuoroActionPerformed
+        jEiValittujaKortteja.setVisible(false);
+        jVaaraSumma.setVisible(false);
+        if (voikoLopettaa == 0) {
+            lopetaVuoro();
+        } else {
+            etOleNostanutKolmea();
+        }
+    }//GEN-LAST:event_jLopetaVuoroActionPerformed
+
     private void jNostaKorttiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jNostaKorttiActionPerformed
         jEiValittujaKortteja.setVisible(false);
         jVaaraSumma.setVisible(false);
         if (MuuLogiikka.getVuoro().getPoyta().getPakka().montaPakassa() < 1
-                && MuuLogiikka.getVuoro().getPoyta().getPoydallaOlevatKortit().size() < 1) {
+            && MuuLogiikka.getVuoro().getPoyta().getPoydallaOlevatKortit().size() < 1) {
             pakkaJaPoytaLoppu();
         } else {
             if (MuuLogiikka.getVuoro().nostaKortti()) {
@@ -445,60 +481,24 @@ public class VuoroRuutu extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jNostaKorttiActionPerformed
 
-    private void jLopetaVuoroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jLopetaVuoroActionPerformed
-        jEiValittujaKortteja.setVisible(false);
-        jVaaraSumma.setVisible(false);
-        if (voikoLopettaa == 0) {
-            lopetaVuoro();
-        } else {
-            etOleNostanutKolmea();
-        }
-    }//GEN-LAST:event_jLopetaVuoroActionPerformed
-
-    private void jLuovutaOKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jLuovutaOKActionPerformed
-        jEiValittujaKortteja.setVisible(false);
-        jVaaraSumma.setVisible(false);
-        MuuLogiikka.getVuoro().getPoyta().poistaPelaaja(MuuLogiikka.getVuoro()
-                .getPoyta().getTamanVuoronPelaaja());
-        if (MuuLogiikka.getVuoro().getPoyta().getPelaajat().size() == 1) {
-            MuuLogiikka.getVuoro().getPoyta().setTamanVuoronPelaaja();
-            this.setVisible(false);
-            MuuLogiikka.voitto();
-            MuuLogiikka.nollaaPeli();
-        } else {
-            this.setVisible(false);
-            MuuLogiikka.getVuoro().jalkivalmistelut();
-            MuuLogiikka.getVuoro().vuoro();
-
-        }
-    }//GEN-LAST:event_jLuovutaOKActionPerformed
-
     private void jPelaaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPelaaActionPerformed
         if (jOmatKortit.getSelectedValuesList().isEmpty() || jOmatKortit.getSelectedValuesList().size() > 3) {
             jEiValittujaKortteja.setVisible(true);
         } else {
             jEiValittujaKortteja.setVisible(false);
-            ArrayList<Kortti> pelattavatKortit = new ArrayList();
-            List<String> pelattavatKortitTekstina = jOmatKortit.getSelectedValuesList();
-            for (String kortti : pelattavatKortitTekstina) {
-                String[] maaJaArvo = kortti.split(" ");
-                pelattavatKortit.add(new Kortti(maaJaArvo[0], Integer.parseInt(maaJaArvo[1])));
-            }
+
+            tekstiKorteiksi();
             if (pelattavatKortit.size() > 1) {
                 if (MuuLogiikka.getVuoro().voikoKortitPelata(pelattavatKortit)) {
                     MuuLogiikka.getVuoro().setPaallimaisenaPelattavat(pelattavatKortit);
-                    
-//                    MikaKorteistaPaallimaiseksiRuutu.main(null);   ei tee järjestyksessä
-                    
-                    MuuLogiikka.getVuoro().pelaa(pelattavatKortit);
-                    
-                    lopetaVuoro();
+                    this.setVisible(false);
+                    MikaKorteistaPaallimaiseksiRuutu mkpr = new MikaKorteistaPaallimaiseksiRuutu(this, pelattavatKortit);
                 } else {
                     jVaaraSumma.setVisible(true);
                 }
             } else if (MuuLogiikka.getVuoro().voikoKortitPelata(pelattavatKortit)) {
+                MuuLogiikka.getVuoro().setPaallimmaisenaPelattava(pelattavatKortit.get(0));
                 MuuLogiikka.getVuoro().pelaa(pelattavatKortit);
-                
                 lopetaVuoro();
             } else {
                 jVaaraSumma.setVisible(true);
@@ -506,43 +506,16 @@ public class VuoroRuutu extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jPelaaActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(VuoroRuutu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(VuoroRuutu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(VuoroRuutu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(VuoroRuutu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+    private void tekstiKorteiksi() throws NumberFormatException {
+        pelattavatKortit = new ArrayList();
+        List<String> pelattavatKortitTekstina = jOmatKortit.getSelectedValuesList();
+        for (String kortti : pelattavatKortitTekstina) {
+            String[] maaJaArvo = kortti.split(" ");
+            pelattavatKortit.add(new Kortti(maaJaArvo[0], Integer.parseInt(maaJaArvo[1])));
         }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                vr = new VuoroRuutu();
-                vr.setLocationRelativeTo(null);
-                vr.setVisible(true);
-
-            }
-        });
     }
+
+    
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

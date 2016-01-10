@@ -5,10 +5,7 @@
  */
 package addykorttipeligroupid.addykorttipeli.graafinenkayttoliittyma;
 
-import addykorttipeligroupid.addykorttipeli.Pakka;
-import addykorttipeligroupid.addykorttipeli.Poyta;
 import addykorttipeligroupid.addykorttipeli.logiikka.MuuLogiikka;
-import java.util.Scanner;
 
 /**
  *
@@ -114,7 +111,8 @@ public class AloitusRuutu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jOhjeetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jOhjeetActionPerformed
-        MuuLogiikka.tulostaOhjeet();
+        this.setVisible(false);
+        OhjeetRuutu or = new OhjeetRuutu();
     }//GEN-LAST:event_jOhjeetActionPerformed
 
     private void jLopetaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jLopetaActionPerformed
@@ -123,7 +121,7 @@ public class AloitusRuutu extends javax.swing.JFrame {
 
     private void jPelaaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPelaaActionPerformed
         this.setVisible(false);
-        PelaajaMaaranValitsemisRuutu.main(null);
+        PelaajaMaaranValitsemisRuutu pmvr = new PelaajaMaaranValitsemisRuutu();
     }//GEN-LAST:event_jPelaaActionPerformed
 
     /**

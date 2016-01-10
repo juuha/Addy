@@ -11,7 +11,7 @@ import java.util.ArrayList;
  */
 public class Vuoro {
 
-    private Poyta poyta;
+    private final Poyta poyta;
     private int voitto = 0;
     private ArrayList<Kortti> paallimaisenaPelattavat;
     private Kortti paallimmaisenaPelattava;
@@ -37,49 +37,15 @@ public class Vuoro {
         poyta.getPakka().jaaKortit(poyta);
     }
 
-    /**
-     * vanha Kysyy pelaajalta mitä tehdään (pelaa/nosta/lopeta vuoro/tilanne) ja
-     * kutsuu metodeja siitä riippuen mitä käskettiin tehdä. Lopuksi tarkistaa
-     * onko peli päättynyt.
-     *
-     * @return palauttaa tiedon voitosta
-     */
-//      
-//    public int vuoro() {
-//        valmistelut();
-//        while (true) {
-//            System.out.println("Pöydän päällimmäinen kortti on: " + poyta.getPaallimmainen());
-//            System.out.println(poyta.getTamanVuoronPelaaja().kadessaOlevatKortit());
-//            System.out.println("Mitä tehdään? (pelaa/nosta/lopeta vuoro/tilanne).");
-//            String komento = lukija.nextLine();
-//            if (komento.equals("nosta")) {
-//                nostaKortti();
-//            } else if (komento.equals("lopeta vuoro")) {
-//                if (lopetavuoro()) {
-//                    break;
-//                }
-//            } else if (komento.equals("pelaa")) {
-//                if (pelaa()) {
-//                    break;
-//                }
-//            } else if (komento.equals("tilanne")) {
-//                tilanne();
-//            } else {
-//                System.out.println("\nVirheellinen syöte. Anna jokin seuraavista"
-//                        + " komennoista (pelaa/nosta/lopeta vuoro/tilanne). ");
-//            }
-//        }
-//        jalkivalmistelut();
-//
-//        return voitto;
-//    }
+
+    
     /**
      *
      * @return
      */
     public void vuoro() {
         valmistelut();
-        AloitaVuoroRuutu.main(null);
+        AloitaVuoroRuutu avr = new AloitaVuoroRuutu();
     }
 
     public void jalkivalmistelut() {
@@ -106,8 +72,7 @@ public class Vuoro {
 
 
     public void pelaa(ArrayList<Kortti> kortit) {
-        poyta.setPaallimmainen(kortit.get(0));   // jos ei
-//        poyta.setPaallimmainen(paallimmaisenaPelattava);   jos MikaKorteistaPaallimaiseksiRuutu toimii
+        poyta.setPaallimmainen(paallimmaisenaPelattava); 
         for (Kortti kortti : kortit) {
             poyta.getTamanVuoronPelaaja().otaKorttiKadesta(kortti.getMaa(), kortti.getArvo());
             poyta.laitaPoydallaOleviinKortteihin(kortti);

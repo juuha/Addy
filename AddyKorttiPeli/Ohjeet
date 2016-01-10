@@ -1,0 +1,7 @@
+Ohjeet pelaamiseen:
+
+Tavoite: Pelata käsi tyhjäksi ennen muita pelaajia.
+
+Pelin alku: Peli alkaa, siten että sattumanvarainen kortti on pöydällä ja ensimmäisenä nimensä syöttänyt pelaaja aloittaa. Kaikilla pelaajilla on alussa 7 korttia kädessä.
+
+Säännöt: Pelaaja voi omalla vuorollaan pelata kortteja, nostaa kortteja, lopettaa vuoron tai luovuttaa. Pelaaja voi pelata enintään 3 korttia vuorollaan, siten että pelattujen korttien summan viimeinen luku on yhtä suuri kuin pöydällä kortin viimeinen luku. Esim: Hertta 13 + Pata 5 + Ruutu 7 = 25 -> 5. Pelaaja voi nostaa enintään kolme korttia vuorollaan ja jos hän ei voi pelata, eikä nostaa enää kortteja hän voi lopettaa vuoronsa. Vuoroa ei voi lopettaa ennen kuin on nostanut 3 korttia. Vuoro loppuu automaattisesti, jos pelaaja pelaa kortteja. Jos muut pelaajat luovuttavat, viimeinen jäljellä oleva pelaaja voittaa.

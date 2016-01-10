@@ -17,17 +17,28 @@ import javax.swing.JList;
  */
 public class MikaKorteistaPaallimaiseksiRuutu extends javax.swing.JFrame {
 
-    private final ArrayList<Kortti> kortit;
+    private final VuoroRuutu vr;
+    private final ArrayList<Kortti> pelattavatKortit ;
 
     /**
      * Creates new form MikaKorteistaPaallimaiseksiRuutu
+     * @param vr
+     * @param pelattavatKortit
      */
-    public MikaKorteistaPaallimaiseksiRuutu() {
+    public MikaKorteistaPaallimaiseksiRuutu(VuoroRuutu vr, ArrayList<Kortti> pelattavatKortit) {
+        this.vr = vr;
+        this.pelattavatKortit = pelattavatKortit;
         initComponents();
-        kortit = MuuLogiikka.getVuoro().getPaallimaisenaPelattavat();
+        aloitus();
+    }
+    
+    private void aloitus(){
+        this.setLocationRelativeTo(null);
+        this.setVisible(true);
     }
 
-    public void asetaLista() {
+    private void asetaLista() {
+        ArrayList<Kortti> kortit = MuuLogiikka.getVuoro().getPaallimaisenaPelattavat();
         DefaultListModel listModel = new DefaultListModel();
         for (Kortti k : kortit) {
             listModel.addElement(k.toString());
@@ -39,6 +50,8 @@ public class MikaKorteistaPaallimaiseksiRuutu extends javax.swing.JFrame {
         jPaallimmainenLista.setVisibleRowCount(3);
         jScrollPane1.setViewportView(jPaallimmainenLista);
     }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -69,6 +82,7 @@ public class MikaKorteistaPaallimaiseksiRuutu extends javax.swing.JFrame {
         jPaallimmainenLista.setFixedCellWidth(119);
         jPaallimmainenLista.setLayoutOrientation(javax.swing.JList.HORIZONTAL_WRAP);
         jPaallimmainenLista.setVisibleRowCount(1);
+        asetaLista();
         jScrollPane1.setViewportView(jPaallimmainenLista);
 
         jValitse.setText("Valitse");
@@ -129,49 +143,14 @@ public class MikaKorteistaPaallimaiseksiRuutu extends javax.swing.JFrame {
             String apu = jPaallimmainenLista.getSelectedValue();
             String[] maajaarvo = apu.split(" ");
             MuuLogiikka.getVuoro().setPaallimmaisenaPelattava(new Kortti(maajaarvo[0], Integer.parseInt(maajaarvo[1])));
-            
+            MuuLogiikka.getVuoro().pelaa(pelattavatKortit);
+            vr.lopetaVuoro();
             this.setVisible(false);
         } else {
             jValitseKortti.setVisible(true);
         }
     }//GEN-LAST:event_jValitseActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MikaKorteistaPaallimaiseksiRuutu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MikaKorteistaPaallimaiseksiRuutu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MikaKorteistaPaallimaiseksiRuutu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MikaKorteistaPaallimaiseksiRuutu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                MikaKorteistaPaallimaiseksiRuutu mkpr = new MikaKorteistaPaallimaiseksiRuutu();
-                mkpr.setLocationRelativeTo(null);
-                mkpr.setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JList<String> jPaallimmainenLista;
