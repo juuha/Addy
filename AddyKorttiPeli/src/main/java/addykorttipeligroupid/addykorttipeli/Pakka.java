@@ -44,7 +44,7 @@ public class Pakka {
     }
     
     /**
-     *
+     *  sekoittaa pakan
      */
     public void sekoita(){
         Collections.shuffle(pakka);

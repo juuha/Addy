@@ -66,12 +66,17 @@ public class Poyta {
         }
     }
     
-    
+    /**
+     *
+     * @return
+     */
     public Pelaaja getTamanVuoronPelaaja(){
         return tamanVuoronPelaaja;
     }
     
-    
+    /**
+     *
+     */
     public void setSeuraavanVuoronpelaaja(){
         for (int i = 0; i < pelaajat.size(); i++) {
             if( pelaajat.get(i).equals(tamanVuoronPelaaja)){
@@ -84,7 +89,10 @@ public class Poyta {
         }
     }
     
-    
+    /**
+     *
+     * @return
+     */
     public Pelaaja getSeuraavanVuoronPelaaja(){
         return seuraavanVuoronPelaaja;
     }
@@ -104,27 +112,42 @@ public class Poyta {
         return pelinEkaVuoro;
     }
     
-    
+    /**
+     *
+     * @param pelatut
+     */
     public void setViimeVuorollaPelattu(String pelatut){
         viimeVuorollaPelattu = pelatut;
     }
     
-    
+    /**
+     *
+     * @return
+     */
     public String getViimeVuorollaPelattu(){
         return viimeVuorollaPelattu;
     }
     
-    
+    /**
+     *
+     * @return
+     */
     public Pakka getPakka(){
         return pakka;
     }
     
-    
+    /**
+     *
+     * @return
+     */
     public ArrayList<Pelaaja> getPelaajat(){
         return pelaajat;
     }
     
-    
+    /**
+     *
+     * @param kortti
+     */
     public void setPaallimmainen(Kortti kortti){
         paallimmainen = kortti;
     }
@@ -138,11 +161,18 @@ public class Poyta {
         poydallaOlevatKortit.add(kortti);
     }
     
-    
+    /**
+     *
+     * @return
+     */
     public ArrayList<Kortti> getPoydallaOlevatKortit(){
         return poydallaOlevatKortit;
     }
     
+    /**
+     *
+     * @param pelaaja
+     */
     public void poistaPelaaja(Pelaaja pelaaja){
         int apu = -1;
         for (int i = 0; i < pelaajat.size(); i++) {
@@ -155,6 +185,9 @@ public class Poyta {
         }
     }
     
+    /**
+     *
+     */
     public void tyhjennaPoyta(){
         poydallaOlevatKortit.removeAll(poydallaOlevatKortit);
     }

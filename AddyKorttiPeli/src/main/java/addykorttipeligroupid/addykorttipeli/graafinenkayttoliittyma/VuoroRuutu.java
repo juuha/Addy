@@ -62,7 +62,7 @@ public class VuoroRuutu extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jOmatKortit);
     }
 
-    public void pakkaJaPoytaLoppu() {
+    private void pakkaJaPoytaLoppu() {
         jKortitLoppuPoydastaJaPakasta.setVisible(true);
     }
 

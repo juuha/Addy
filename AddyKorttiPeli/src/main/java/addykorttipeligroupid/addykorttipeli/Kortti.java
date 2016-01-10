@@ -26,7 +26,7 @@ public class Kortti {
     
     /**
      *
-     * palauttaa kortin todellisen pelissä käytettävän arvon
+     * @return palauttaa kortin todellisen pelissä käytettävän arvon
      */
     public int getNumeroArvo(){
         int apu = arvo % 10;

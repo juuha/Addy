@@ -101,6 +101,9 @@
                 <Property name="layoutOrientation" type="int" value="2"/>
                 <Property name="visibleRowCount" type="int" value="1"/>
               </Properties>
+              <Events>
+                <EventHandler event="valueChanged" listener="javax.swing.event.ListSelectionListener" parameters="javax.swing.event.ListSelectionEvent" handler="jPaallimmainenListaValueChanged"/>
+              </Events>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="asetaLista();"/>
                 <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
@@ -111,6 +114,7 @@
         <Component class="javax.swing.JButton" name="jValitse">
           <Properties>
             <Property name="text" type="java.lang.String" value="Valitse"/>
+            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jValitseActionPerformed"/>

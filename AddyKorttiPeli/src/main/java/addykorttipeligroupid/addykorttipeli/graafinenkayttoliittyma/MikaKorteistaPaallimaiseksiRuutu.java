@@ -83,9 +83,15 @@ public class MikaKorteistaPaallimaiseksiRuutu extends javax.swing.JFrame {
         jPaallimmainenLista.setLayoutOrientation(javax.swing.JList.HORIZONTAL_WRAP);
         jPaallimmainenLista.setVisibleRowCount(1);
         asetaLista();
+        jPaallimmainenLista.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                jPaallimmainenListaValueChanged(evt);
+            }
+        });
         jScrollPane1.setViewportView(jPaallimmainenLista);
 
         jValitse.setText("Valitse");
+        jValitse.setEnabled(false);
         jValitse.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jValitseActionPerformed(evt);
@@ -150,6 +156,14 @@ public class MikaKorteistaPaallimaiseksiRuutu extends javax.swing.JFrame {
             jValitseKortti.setVisible(true);
         }
     }//GEN-LAST:event_jValitseActionPerformed
+
+    private void jPaallimmainenListaValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_jPaallimmainenListaValueChanged
+        if (jPaallimmainenLista.getSelectedValuesList().size() == 1){
+            jValitse.setEnabled(true);
+        } else {
+            jValitse.setEnabled(false);
+        }
+    }//GEN-LAST:event_jPaallimmainenListaValueChanged
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
